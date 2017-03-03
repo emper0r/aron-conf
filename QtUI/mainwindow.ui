@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1030</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1030</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1030</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Monospace</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="cursor">
+   <cursorShape>PointingHandCursor</cursorShape>
+  </property>
+  <property name="windowTitle">
+   <string>Aron Config</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QComboBox" name="cbClient">
+    <property name="geometry">
+     <rect>
+      <x>54</x>
+      <y>27</y>
+      <width>180</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="insertPolicy">
+     <enum>QComboBox::InsertAlphabetically</enum>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>true</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Seleziona</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="labelCliente">
+    <property name="geometry">
+     <rect>
+      <x>56</x>
+      <y>8</y>
+      <width>50</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Cliente</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btPlus">
+    <property name="geometry">
+     <rect>
+      <x>314</x>
+      <y>86</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btMinus">
+    <property name="geometry">
+     <rect>
+      <x>339</x>
+      <y>86</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>54</x>
+      <y>114</y>
+      <width>555</width>
+      <height>540</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>555</width>
+      <height>540</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>555</width>
+      <height>540</height>
+     </size>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>555</width>
+      <height>540</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="tabKeyNavigation">
+     <bool>false</bool>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="dragDropOverwriteMode">
+     <bool>false</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>100</number>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Hardware</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Campo</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Value</string>
+     </property>
+     <property name="font">
+      <font>
+       <family>Monospace</family>
+       <pointsize>9</pointsize>
+      </font>
+     </property>
+    </column>
+   </widget>
+   <widget class="QLabel" name="labelLines">
+    <property name="geometry">
+     <rect>
+      <x>54</x>
+      <y>88</y>
+      <width>261</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Configurazioni da accordo ai filtri</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbHardware">
+    <property name="geometry">
+     <rect>
+      <x>375</x>
+      <y>28</y>
+      <width>180</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="currentText">
+     <string>Seleziona</string>
+    </property>
+    <property name="insertPolicy">
+     <enum>QComboBox::InsertAlphabetically</enum>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>true</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Seleziona</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="labelHardware">
+    <property name="geometry">
+     <rect>
+      <x>313</x>
+      <y>31</y>
+      <width>61</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Hardware</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cbItem">
+    <property name="geometry">
+     <rect>
+      <x>375</x>
+      <y>54</y>
+      <width>180</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="insertPolicy">
+     <enum>QComboBox::InsertAlphabetically</enum>
+    </property>
+    <property name="duplicatesEnabled">
+     <bool>true</bool>
+    </property>
+    <item>
+     <property name="text">
+      <string>Seleziona</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QLabel" name="labelItems">
+    <property name="geometry">
+     <rect>
+      <x>331</x>
+      <y>56</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Campo</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelConnesso">
+    <property name="geometry">
+     <rect>
+      <x>634</x>
+      <y>628</y>
+      <width>101</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Connesso come:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelUserName">
+    <property name="geometry">
+     <rect>
+      <x>744</x>
+      <y>628</y>
+      <width>131</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelFiltri">
+    <property name="geometry">
+     <rect>
+      <x>378</x>
+      <y>8</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Filtri</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelLogo">
+    <property name="geometry">
+     <rect>
+      <x>894</x>
+      <y>568</y>
+      <width>131</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelGalleria">
+    <property name="geometry">
+     <rect>
+      <x>624</x>
+      <y>8</y>
+      <width>121</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Galleria di Foto</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btPlus_foto">
+    <property name="geometry">
+     <rect>
+      <x>744</x>
+      <y>6</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btMinus_foto">
+    <property name="geometry">
+     <rect>
+      <x>769</x>
+      <y>6</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidgetImg">
+    <property name="geometry">
+     <rect>
+      <x>625</x>
+      <y>30</y>
+      <width>400</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>400</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>400</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="sizeIncrement">
+     <size>
+      <width>400</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>400</width>
+      <height>100</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::NoEditTriggers</set>
+    </property>
+    <property name="tabKeyNavigation">
+     <bool>false</bool>
+    </property>
+    <property name="showDropIndicator" stdset="0">
+     <bool>false</bool>
+    </property>
+    <property name="dragDropOverwriteMode">
+     <bool>false</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SingleSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectRows</enum>
+    </property>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>398</number>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>398</number>
+    </attribute>
+    <column>
+     <property name="text">
+      <string>Immagini</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>54</x>
+      <y>77</y>
+      <width>561</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_2">
+    <property name="geometry">
+     <rect>
+      <x>608</x>
+      <y>-2</y>
+      <width>20</width>
+      <height>651</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>293</x>
+      <y>-5</y>
+      <width>20</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btClientPlus">
+    <property name="geometry">
+     <rect>
+      <x>239</x>
+      <y>28</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btClientMinus">
+    <property name="geometry">
+     <rect>
+      <x>264</x>
+      <y>28</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btHwPlus">
+    <property name="geometry">
+     <rect>
+      <x>563</x>
+      <y>27</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btHwMinus">
+    <property name="geometry">
+     <rect>
+      <x>588</x>
+      <y>27</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btItemPlus">
+    <property name="geometry">
+     <rect>
+      <x>563</x>
+      <y>55</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btItemMinus">
+    <property name="geometry">
+     <rect>
+      <x>588</x>
+      <y>55</y>
+      <width>25</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btPassword">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>51</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
+    <property name="statusTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleName">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleDescription">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="Line" name="line_4">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>-5</y>
+      <width>20</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="line_5">
+    <property name="geometry">
+     <rect>
+      <x>620</x>
+      <y>615</y>
+      <width>261</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btLogin">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>25</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
+    <property name="statusTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleName">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleDescription">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btLogout">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>78</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
+    <property name="statusTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleName">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleDescription">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btUsers">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>105</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
+    <property name="statusTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleName">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleDescription">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btLogs">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>131</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
+    <property name="statusTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleName">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleDescription">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelFoto">
+    <property name="geometry">
+     <rect>
+      <x>633</x>
+      <y>147</y>
+      <width>380</width>
+      <height>411</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btPDF">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>157</y>
+      <width>40</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="toolTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
+    <property name="statusTip">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="whatsThis">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleName">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="accessibleDescription">
+     <string extracomment="Cambio Password"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <zorder>cbClient</zorder>
+   <zorder>labelCliente</zorder>
+   <zorder>btPlus</zorder>
+   <zorder>btMinus</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>labelLines</zorder>
+   <zorder>cbHardware</zorder>
+   <zorder>labelHardware</zorder>
+   <zorder>cbItem</zorder>
+   <zorder>labelItems</zorder>
+   <zorder>labelConnesso</zorder>
+   <zorder>labelUserName</zorder>
+   <zorder>labelFiltri</zorder>
+   <zorder>labelLogo</zorder>
+   <zorder>labelGalleria</zorder>
+   <zorder>btPlus_foto</zorder>
+   <zorder>btMinus_foto</zorder>
+   <zorder>tableWidgetImg</zorder>
+   <zorder>line</zorder>
+   <zorder>line_2</zorder>
+   <zorder>line_3</zorder>
+   <zorder>btClientPlus</zorder>
+   <zorder>btClientMinus</zorder>
+   <zorder>btHwPlus</zorder>
+   <zorder>btHwMinus</zorder>
+   <zorder>btItemPlus</zorder>
+   <zorder>btItemMinus</zorder>
+   <zorder>btPassword</zorder>
+   <zorder>line_4</zorder>
+   <zorder>line_5</zorder>
+   <zorder>btLogin</zorder>
+   <zorder>btLogout</zorder>
+   <zorder>btUsers</zorder>
+   <zorder>btLogs</zorder>
+   <zorder>btPDF</zorder>
+   <zorder>labelFoto</zorder>
+  </widget>
+  <widget class="QStatusBar" name="statusBar">
+   <property name="palette">
+    <palette>
+     <active>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>234</red>
+         <green>30</green>
+         <blue>30</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </active>
+     <inactive>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>234</red>
+         <green>30</green>
+         <blue>30</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </inactive>
+     <disabled>
+      <colorrole role="Text">
+       <brush brushstyle="SolidPattern">
+        <color alpha="255">
+         <red>159</red>
+         <green>158</green>
+         <blue>158</blue>
+        </color>
+       </brush>
+      </colorrole>
+     </disabled>
+    </palette>
+   </property>
+   <property name="font">
+    <font>
+     <family>Monospace</family>
+     <pointsize>9</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+  </widget>
+  <action name="actionLogin">
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionShowClients">
+   <property name="text">
+    <string>Visualizza Tutti</string>
+   </property>
+  </action>
+  <action name="actionAddClient">
+   <property name="text">
+    <string>Aggiungi</string>
+   </property>
+  </action>
+  <action name="actionFindClient">
+   <property name="text">
+    <string>Cerca</string>
+   </property>
+  </action>
+  <action name="actionModClient">
+   <property name="text">
+    <string>Modifica</string>
+   </property>
+  </action>
+  <action name="actionDeleteClient">
+   <property name="text">
+    <string>Cancella</string>
+   </property>
+  </action>
+  <action name="actionNewHw">
+   <property name="text">
+    <string>Nuovo Hardware</string>
+   </property>
+  </action>
+  <action name="actionNewItem">
+   <property name="text">
+    <string>Nuovo Campo</string>
+   </property>
+  </action>
+  <action name="actionDeleteHw">
+   <property name="text">
+    <string>Hardware</string>
+   </property>
+  </action>
+  <action name="actionDeleteItem">
+   <property name="text">
+    <string>Campo</string>
+   </property>
+  </action>
+  <action name="actionEsporta_in_PDF">
+   <property name="text">
+    <string>Esporta in PDF</string>
+   </property>
+  </action>
+  <action name="actionChangePassword">
+   <property name="text">
+    <string>Cambia Password</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>btLogin</tabstop>
+  <tabstop>cbClient</tabstop>
+  <tabstop>btClientPlus</tabstop>
+  <tabstop>btClientMinus</tabstop>
+  <tabstop>cbHardware</tabstop>
+  <tabstop>btHwPlus</tabstop>
+  <tabstop>btHwMinus</tabstop>
+  <tabstop>cbItem</tabstop>
+  <tabstop>btItemPlus</tabstop>
+  <tabstop>btItemMinus</tabstop>
+  <tabstop>tableWidget</tabstop>
+  <tabstop>btPlus</tabstop>
+  <tabstop>btMinus</tabstop>
+  <tabstop>tableWidgetImg</tabstop>
+  <tabstop>btPlus_foto</tabstop>
+  <tabstop>btMinus_foto</tabstop>
+  <tabstop>btPassword</tabstop>
+  <tabstop>btUsers</tabstop>
+  <tabstop>btLogs</tabstop>
+  <tabstop>btLogout</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

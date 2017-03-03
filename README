@@ -1,0 +1,31 @@
+Eseguire i seguenti programmi per default dentro la directory tools
+-------------------------------------------------------------------
+
+1- python-3.5.2.exe
+
+2- PyQt5-5.6-gpl-Py3.5-Qt5.6.0-x32-2.exe
+
+3- nella consola MS-DOS eseguire come administrator: 
+
+ pip install configparser pymysql pycryptodome bcrypt python-resize-image reportlab iptools cxfreeze
+
+4- Estrarre aron-conf.rar in C:\aron-conf
+
+5- Eseguire la applicazione aron-conf.py o creare il collegamento Aron Config.lnk sul desktop
+
+6- Creare port:
+
+ms-dos> c:\Python35\python.exe \
+        c:\Python35\Scripts\cxfreeze \
+        --install-dir=c:\aron-port \
+        --icon=c:\aron-conf\QtUI\ctime_logo.ico \
+        aron-conf.py
+
+* Copiare cartella QtUi nella cartella distribution dopo la creazione del port
+
+TODO:
+- opcion de buscar
+- subir adjuntos tipo xls, txt, pdf, conf, xml
+- modificar sin eliminar la linea
+- tabla para correos
+- limpiar la tabla antes de salir
