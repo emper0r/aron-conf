@@ -148,6 +148,13 @@ class Main(QMainWindow):
         self._ready()
 
     def _ready(self):
+        for i in reversed(range(self.ui.tableWidget.rowCount())):
+            self.ui.tableWidget.removeRow(i)
+        for i in reversed(range(self.ui.tableWidgetImg.rowCount())):
+            self.ui.tableWidgetImg.removeRow(i)
+        self.ui.cbClient.clear()
+        self.ui.cbHardware.clear()
+        self.ui.cbItem.clear()
         self.ui.cbClient.setDisabled(True)
         self.ui.cbHardware.setDisabled(True)
         self.ui.cbItem.setDisabled(True)
