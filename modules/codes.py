@@ -41,6 +41,8 @@ def msg(code=None):
         text = 'Accesso al sistema Aron-Conf'
     if code == 116:
         text = 'Campo inserito '
+    if code == 117:
+        text = 'I files con estensione supportati sono: TXT o RTF'
     if code == 201:
         text = 'Sicuro di cancellare questa informazione '
     if code == 202:

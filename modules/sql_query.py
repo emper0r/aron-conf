@@ -232,6 +232,20 @@ def Q(action=None, kwargs=None):
         cursor.execute("SELECT * FROM history WHERE log_data BETWEEN ('%s') AND ('%s') AND utente='%s' ORDER BY log_data DESC;" %
                        (str(kwargs[0]), str(kwargs[1]), str(kwargs[2])))
         query = cursor.fetchall()
+    if action == 'upload':
+        conn.insert_id()
+        query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        idclient = cursor.fetchall()
+        with open(kwargs[1][0], "rb") as stringFile:
+            buffer = base64.b64encode(stringFile.read())
+        sql_ctx = "INSERT INTO tbfiles (id_client, name_file, buffer) VALUES (%s, %s, %s);"
+        cursor.execute(sql_ctx, (int(idclient[0][0]), str(kwargs[1][0]).split('/')[-1], buffer))
+    if action == 'files':
+        cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        idclient = cursor.fetchall()
+        sql_ctx = "SELECT name_file FROM tbfiles WHERE id_client='%s';" % idclient[0][0]
+        cursor.execute(sql_ctx)
+        query = cursor.fetchall()
     conn.commit()
     conn.close()
     return query

@@ -65,6 +65,14 @@ class Main(QMainWindow):
         self.ui.btPlus.setIcon(QIcon(plus_img))
         self.ui.btPlus.setToolTip('Aggiungi configurazione')
         self.ui.btPlus.setToolTipDuration(10000)
+        upload_img = QPixmap("QtUI/upload.png")
+        self.ui.btUpload.setIcon(QIcon(upload_img))
+        self.ui.btUpload.setToolTip('Aggiungi file')
+        self.ui.btUpload.setToolTipDuration(10000)
+        download_img = QPixmap("QtUI/download.png")
+        self.ui.btDownload.setIcon(QIcon(download_img))
+        self.ui.btDownload.setToolTip('Scarica file')
+        self.ui.btDownload.setToolTipDuration(10000)
         plus_hw_img = QPixmap("QtUI/plus.png")
         self.ui.btHwPlus.setIcon(QIcon(plus_hw_img))
         self.ui.btHwPlus.setToolTip('Aggiungi Hardware')
@@ -85,6 +93,10 @@ class Main(QMainWindow):
         self.ui.btMinus.setIcon(QIcon(minus_img))
         self.ui.btMinus.setToolTip('Cancella configurazione')
         self.ui.btMinus.setToolTipDuration(10000)
+        trash_img = QPixmap("QtUI/trash.png")
+        self.ui.btTrash.setIcon(QIcon(trash_img))
+        self.ui.btTrash.setToolTip('Cancella file')
+        self.ui.btTrash.setToolTipDuration(10000)
         minus_hw_img = QPixmap("QtUI/minus.png")
         self.ui.btHwMinus.setIcon(QIcon(minus_hw_img))
         self.ui.btHwMinus.setToolTip('Cancella Hardware selezzionato')
@@ -141,6 +153,9 @@ class Main(QMainWindow):
         self.ui.btUsers.clicked.connect(self.utenti)
         self.ui.btLogs.clicked.connect(self.logs)
         self.ui.btPDF.clicked.connect(self._pdf)
+        self.ui.btUpload.clicked.connect(self._loadfile)
+        self.ui.btDownload.clicked.connect(self._downloadfile)
+        #self.ui.btDownload.clicked.connect(self._downloadfile)
         self.ui.labelFoto.mousePressEvent = self.img_normal_size
         self._want_to_close = False
         logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
@@ -178,6 +193,7 @@ class Main(QMainWindow):
         self.ui.btUsers.setHidden(True)
         self.ui.btLogs.setHidden(True)
         self.ui.btLogin.setFocus(True)
+        self.ui.tab_attachments.setDisabled(True)
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
 
     def _login(self):
@@ -204,6 +220,7 @@ class Main(QMainWindow):
                 self.ui.tableWidget.setDisabled(False)
                 self.ui.tableWidgetImg.setDisabled(False)
                 self.ui.labelFoto.setDisabled(False)
+                self.ui.tab_attachments.setDisabled(False)
                 self.ui.btLogin.setDisabled(True)
                 if login._login == 'admin':
                     self.ui.btUsers.setHidden(False)
@@ -386,6 +403,10 @@ class Main(QMainWindow):
                 self.ui.tableWidget.setItem(row, colum, value)
                 colum += 1
             row += 1
+        if self.ui.cbClient.currentText() == '' or self.ui.cbClient.currentText() == 'Seleziona':
+            return
+        else:
+            self._table_files()
 
     def _change_pwd(self):
         changePasswd = ChangePasswd.DialogChangePwd()
@@ -404,6 +425,29 @@ class Main(QMainWindow):
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
             qApp.exit(0)
 
+    def _loadfile(self):
+        dlg = QFileDialog()
+        dlg.setFileMode(QFileDialog.AnyFile)
+        dlg.selectNameFilter(codes.msg(code=101))
+        fname = dlg.getOpenFileName(self, 'Seleziona file', codes.msg(code=101))
+        if str(fname[0])[-3:] == 'txt' or str(fname[0])[-3:] == 'rtf':
+            sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
+            self._table_files()
+        else:
+            QMessageBox.about(self, 'Attenzione', codes.msg(code=117))
+
+    def _downloadfile(self):
+        pass
+
+    def _table_files(self):
+        files = sql_query.Q(action='files', kwargs=[self.ui.cbClient.currentText()])
+        for i in reversed(range(self.ui.tableWidget_attachments.rowCount())):
+            self.ui.tableWidget_attachments.removeRow(i)
+        for row in range(0, len(files)):
+            self.ui.tableWidget_attachments.insertRow(self.ui.tableWidget_attachments.rowCount())
+            value = QTableWidgetItem(str(files[row][0]), 0)
+            self.ui.tableWidget_attachments.setItem(row, 0, value)
+    
     def _add_foto(self):
         if self.ui.cbClient.currentText() == 'Seleziona':
             self.statusBar().showMessage(codes.msg(code=302), 4000)
@@ -443,7 +487,7 @@ class Main(QMainWindow):
                 self.id_image = _img
             except:
                 self.no_image()
-
+    
     def img(self):
         img_idx = self.ui.tableWidgetImg.currentRow()
         photo = sql_query.Q(action='tableView_Img', kwargs=[self.id_image[img_idx]])
