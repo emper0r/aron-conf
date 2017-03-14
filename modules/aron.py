@@ -473,8 +473,9 @@ class Main(QMainWindow):
             or str(fname[0])[-3:] == 'dat':
             sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
             self._table_files()
+            self.statusBar().showMessage(codes.msg(code=101), 4000)
         else:
-            QMessageBox.about(self, 'Attenzione', codes.msg(code=117))
+            QMessageBox.about(self, 'Attenzione', codes.msg(code=100))
 
     def _readFile(self):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
@@ -498,10 +499,17 @@ class Main(QMainWindow):
         sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
                                                   self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
         self._table_files()
+        self.statusBar().showMessage(codes.msg(code=100), 4000)
     
     def _downloadFile(self):
-        pass
-    
+        buffer = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(),
+                                                       str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())])
+        filename = QFileDialog.getSaveFileName(self, 'Save File', os.path.expanduser("~"))
+        f = open(filename[0] + str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()), 'w')
+        filedata = str(buffer[0][0])
+        f.write(filedata)
+        f.close()
+        
     def _modifyFile(self):
         self.ui.btSave.setDisabled(False)
         self.ui.labelupdate.setDisabled(False)
@@ -527,6 +535,7 @@ class Main(QMainWindow):
         sql_query.Q(action='update_text', kwargs=[self.ui.cbClient.currentText(),
                                                   self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text(),
                                                   txt])
+        self.statusBar().showMessage(codes.msg(code=100), 4000)
 
     def _table_files(self):
         files = sql_query.Q(action='files', kwargs=[self.ui.cbClient.currentText()])
