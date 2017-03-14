@@ -233,11 +233,10 @@ def Q(action=None, kwargs=None):
                        (str(kwargs[0]), str(kwargs[1]), str(kwargs[2])))
         query = cursor.fetchall()
     if action == 'upload':
-        conn.insert_id()
         query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()
-        with open(kwargs[1][0], "rb") as stringFile:
-            buffer = base64.b64encode(stringFile.read())
+        file = open(kwargs[1][0], "r")
+        buffer = file.read()
         sql_ctx = "INSERT INTO tbfiles (id_client, name_file, buffer) VALUES (%s, %s, %s);"
         cursor.execute(sql_ctx, (int(idclient[0][0]), str(kwargs[1][0]).split('/')[-1], buffer))
     if action == 'files':
@@ -246,6 +245,24 @@ def Q(action=None, kwargs=None):
         sql_ctx = "SELECT name_file FROM tbfiles WHERE id_client='%s';" % idclient[0][0]
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
+    if action == 'load_file':
+        cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        idclient = cursor.fetchall()
+        sql_ctx = "SELECT buffer FROM tbfiles WHERE id_client='%s' AND name_file='%s';" % (idclient[0][0], kwargs[1])
+        cursor.execute(sql_ctx)
+        query = cursor.fetchall()
+        return query
+    if action == 'update_text':
+        query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        idclient = cursor.fetchall()
+        buffer = kwargs[2]
+        sql_ctx = "UPDATE tbfiles set buffer='%s' WHERE id_client='%s' AND name_file='%s';" % (buffer, idclient[0][0], kwargs[1])
+        cursor.execute(sql_ctx)
+    if action == 'delete_file':
+        query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        idclient = cursor.fetchall()
+        sql_ctx = "DELETE FROM tbfiles WHERE id_client='%s' AND name_file='%s';" % (idclient[0][0], kwargs[1])
+        cursor.execute(sql_ctx)
     conn.commit()
     conn.close()
     return query

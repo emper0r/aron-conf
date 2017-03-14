@@ -61,6 +61,7 @@ class Main(QMainWindow):
         self.ui.cbClient.currentTextChanged['QString'].connect(self.update_hardware)
         self.ui.cbClient.currentTextChanged['QString'].connect(self._table_foto)
         self.ui.tableWidgetImg.clicked.connect(self.img)
+        self.ui.tableWidget_attachments.clicked.connect(self._readFile)
         plus_img = QPixmap("QtUI/plus.png")
         self.ui.btPlus.setIcon(QIcon(plus_img))
         self.ui.btPlus.setToolTip('Aggiungi configurazione')
@@ -137,6 +138,14 @@ class Main(QMainWindow):
         self.ui.btPDF.setIcon(QIcon(pdf))
         self.ui.btPDF.setToolTip('Salva in formato PDF')
         self.ui.btPDF.setToolTipDuration(10000)
+        save = QPixmap("QtUI/save.png")
+        self.ui.btSave.setIcon(QIcon(save))
+        self.ui.btSave.setToolTip('Salva cambiamenti')
+        self.ui.btSave.setToolTipDuration(10000)
+        modify = QPixmap("QtUI/modify.png")
+        self.ui.btModify.setIcon(QIcon(modify))
+        self.ui.btModify.setToolTip('Abilita modifica')
+        self.ui.btModify.setToolTipDuration(10000)
         self.ui.btClientPlus.clicked.connect(self._new_client)
         self.ui.btClientMinus.clicked.connect(self._delete_client)
         self.ui.btHwPlus.clicked.connect(self._new_hardware)
@@ -153,9 +162,11 @@ class Main(QMainWindow):
         self.ui.btUsers.clicked.connect(self.utenti)
         self.ui.btLogs.clicked.connect(self.logs)
         self.ui.btPDF.clicked.connect(self._pdf)
-        self.ui.btUpload.clicked.connect(self._loadfile)
-        self.ui.btDownload.clicked.connect(self._downloadfile)
-        #self.ui.btDownload.clicked.connect(self._downloadfile)
+        self.ui.btUpload.clicked.connect(self._uploadFile)
+        self.ui.btDownload.clicked.connect(self._downloadFile)
+        self.ui.btTrash.clicked.connect(self._deleteFile)
+        self.ui.btSave.clicked.connect(self._save_text)
+        self.ui.btModify.clicked.connect(self._modify_enabled)
         self.ui.labelFoto.mousePressEvent = self.img_normal_size
         self._want_to_close = False
         logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
@@ -167,6 +178,9 @@ class Main(QMainWindow):
             self.ui.tableWidget.removeRow(i)
         for i in reversed(range(self.ui.tableWidgetImg.rowCount())):
             self.ui.tableWidgetImg.removeRow(i)
+        for i in reversed(range(self.ui.tableWidget_attachments.rowCount())):
+            self.ui.tableWidget_attachments.removeRow(i)
+        self.ui.plainTextEdit.clear()
         self.ui.cbClient.clear()
         self.ui.cbHardware.clear()
         self.ui.cbItem.clear()
@@ -193,7 +207,14 @@ class Main(QMainWindow):
         self.ui.btUsers.setHidden(True)
         self.ui.btLogs.setHidden(True)
         self.ui.btLogin.setFocus(True)
+        self.ui.plainTextEdit.setDisabled(True)
+        self.ui.plainTextEdit.setReadOnly(True)
         self.ui.tab_attachments.setDisabled(True)
+        self.ui.btSave.setDisabled(True)
+        self.ui.labelupdate.setDisabled(True)
+        self.ui.labelallowmodify.setDisabled(True)
+        self.ui.btModify.setDisabled(True)
+        self.no_image()
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
 
     def _login(self):
@@ -221,6 +242,12 @@ class Main(QMainWindow):
                 self.ui.tableWidgetImg.setDisabled(False)
                 self.ui.labelFoto.setDisabled(False)
                 self.ui.tab_attachments.setDisabled(False)
+                self.ui.plainTextEdit.setDisabled(True)
+                self.ui.plainTextEdit.setReadOnly(True)
+                self.ui.btSave.setDisabled(True)
+                self.ui.labelupdate.setDisabled(True)
+                self.ui.labelallowmodify.setDisabled(True)
+                self.ui.btModify.setDisabled(True)
                 self.ui.btLogin.setDisabled(True)
                 if login._login == 'admin':
                     self.ui.btUsers.setHidden(False)
@@ -254,6 +281,7 @@ class Main(QMainWindow):
         if len(client) > 0:
             for item in range(0, len(client)):
                 self.ui.cbClient.addItem(client[item][0])
+        self.no_image()
         self.update_hardware()
 
     def utenti(self):
@@ -290,6 +318,7 @@ class Main(QMainWindow):
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=105) + '%s' % value])
             self.statusBar().showMessage(msg, 4000)
             self.update_client()
+            self.no_image()
 
     def _new_hardware(self):
         if self.ui.cbClient.currentIndex() == 'Seleziona':
@@ -392,6 +421,11 @@ class Main(QMainWindow):
             self.statusBar().showMessage(codes.msg(code=305), 4000)
 
     def _table_view(self):
+        self.ui.plainTextEdit.clear()
+        self.ui.btSave.setDisabled(True)
+        self.ui.labelupdate.setDisabled(True)
+        self.ui.plainTextEdit.setDisabled(True)
+        self.ui.plainTextEdit.setReadOnly(True)
         for i in reversed(range(self.ui.tableWidget.rowCount())):
             self.ui.tableWidget.removeRow(i)
         tmp_values = sql_query.Q(action='tableView', kwargs=[self.ui.cbClient.currentText()])
@@ -425,19 +459,74 @@ class Main(QMainWindow):
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
             qApp.exit(0)
 
-    def _loadfile(self):
+    def _uploadFile(self):
         dlg = QFileDialog()
         dlg.setFileMode(QFileDialog.AnyFile)
         dlg.selectNameFilter(codes.msg(code=101))
-        fname = dlg.getOpenFileName(self, 'Seleziona file', codes.msg(code=101))
-        if str(fname[0])[-3:] == 'txt' or str(fname[0])[-3:] == 'rtf':
+        fname = dlg.getOpenFileName(self, 'Seleziona file', codes.msg(code=117))
+        if str(fname[0])[-3:] == 'txt' \
+            or str(fname[0])[-3:] == 'rtf' \
+            or str(fname[0])[-3:] == 'xls' \
+            or str(fname[0])[-3:] == 'xlsx' \
+            or str(fname[0])[-3:] == 'conf' \
+            or str(fname[0])[-3:] == 'sql' \
+            or str(fname[0])[-3:] == 'dat':
             sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
             self._table_files()
         else:
             QMessageBox.about(self, 'Attenzione', codes.msg(code=117))
 
-    def _downloadfile(self):
+    def _readFile(self):
+        if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
+            file = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(), str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())])
+            sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=111) + 'cliente ' + self.ui.cbClient.currentText()])
+            self.ui.plainTextEdit.setPlainText(file[0][0])
+            self.ui.labelallowmodify.setDisabled(False)
+            self.ui.btModify.setDisabled(False)
+            self.ui.plainTextEdit.setDisabled(False)
+            self.ui.plainTextEdit.setReadOnly(True)
+        else:
+            self.ui.plainTextEdit.clear()
+            self.ui.labelallowmodify.setDisabled(True)
+            self.ui.labelupdate.setDisabled(True)
+            self.ui.btModify.setDisabled(True)
+            self.ui.plainTextEdit.setDisabled(True)
+            self.ui.plainTextEdit.setReadOnly(False)
+            self.ui.btSave.setDisabled(True)
+
+    def _deleteFile(self):
+        sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
+                                                  self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
+        self._table_files()
+    
+    def _downloadFile(self):
         pass
+    
+    def _modifyFile(self):
+        self.ui.btSave.setDisabled(False)
+        self.ui.labelupdate.setDisabled(False)
+        self.ui.plainTextEdit.setDisabled(False)
+        self.ui.plainTextEdit.setReadOnly(False)
+        self.ui.labelallowmodify.setDisabled(True)
+        self.ui.btModify.setDisabled(False)
+    
+    def _modify_enabled(self):
+        self.ui.plainTextEdit.setReadOnly(False)
+        self.ui.btModify.setDisabled(True)
+        self.ui.labelallowmodify.setDisabled(True)
+        self.ui.btSave.setDisabled(False)
+        self.ui.labelupdate.setDisabled(False)
+    
+    def _save_text(self):
+        self.ui.btSave.setDisabled(True)
+        self.ui.labelupdate.setDisabled(True)
+        self.ui.plainTextEdit.setReadOnly(True)
+        self.ui.btModify.setDisabled(False)
+        self.ui.labelallowmodify.setDisabled(False)
+        txt = self.ui.plainTextEdit.toPlainText()
+        sql_query.Q(action='update_text', kwargs=[self.ui.cbClient.currentText(),
+                                                  self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text(),
+                                                  txt])
 
     def _table_files(self):
         files = sql_query.Q(action='files', kwargs=[self.ui.cbClient.currentText()])
@@ -502,10 +591,11 @@ class Main(QMainWindow):
 
     def img_normal_size(self, event):
         if self._fs == 1:
-            self.ui.labelFoto.setGeometry(633, 147, 380, 411)
+            self.ui.labelFoto.setGeometry(260, 50, 700, 550)
             self._fs = 0
         else:
-            self.ui.labelFoto.setGeometry(0, 0, 1030, 700)
+            self.ui.labelFoto.setGeometry(260, 50, 700, 550)
+            #self.ui.labelFoto.setGeometry(0, 0, 1030, 700)
             self._fs = 1
 
     def _del_foto(self):
