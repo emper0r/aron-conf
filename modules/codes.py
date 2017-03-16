@@ -47,6 +47,10 @@ def msg(code=None):
         text = 'Sicuro di cancellare questa informazione '
     if code == 202:
         text = 'Sicuro che vuole cancellare con tutte le informazione all\'interno del Cliente: '
+    if code == 203:
+        text = 'Sicuro che vuole cancellare il file del Cliente: '
+    if code == 204:
+        text = 'Sicuro che vuole cancellare l\'immagine del Cliente: '
     if code == 301:
         text = 'Devi selezionare prima un cliente o crearne uno nuovo'
     if code == 302:

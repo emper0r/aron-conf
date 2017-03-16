@@ -496,10 +496,12 @@ class Main(QMainWindow):
             self.ui.btSave.setDisabled(True)
 
     def _deleteFile(self):
-        sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
-                                                  self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
-        self._table_files()
-        self.statusBar().showMessage(codes.msg(code=100), 4000)
+        reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=203) + '%s ?' % self.ui.cbClient.currentText(), QMessageBox.Yes, QMessageBox.No)
+        if reply == QMessageBox.Yes:
+            sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
+                                                      self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
+            self._table_files()
+            self.statusBar().showMessage(codes.msg(code=100), 4000)
     
     def _downloadFile(self):
         buffer = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(),
@@ -614,11 +616,13 @@ class Main(QMainWindow):
             if self.ui.tableWidgetImg.currentRow() == -1:
                 self.statusBar().showMessage(codes.msg(code=306), 2000)
             else:
-                sql_query.Q(action='delete_Img', kwargs=[int(self.id_image[self.ui.tableWidgetImg.currentRow()])])
-                sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(),
-                                                  codes.msg(code=113) + 'cliente ' + self.ui.cbClient.currentText()])
-                self._table_foto()
-                self.statusBar().showMessage(codes.msg(code=100), 4000)
+                reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=203) + '%s ?' % self.ui.cbClient.currentText(), QMessageBox.Yes, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    sql_query.Q(action='delete_Img', kwargs=[int(self.id_image[self.ui.tableWidgetImg.currentRow()])])
+                    sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(),
+                                                      codes.msg(code=113) + 'cliente ' + self.ui.cbClient.currentText()])
+                    self._table_foto()
+                    self.statusBar().showMessage(codes.msg(code=100), 4000)
 
     def logs(self):
         dialog = Logs.DialogLogs()
