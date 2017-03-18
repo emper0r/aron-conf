@@ -54,123 +54,167 @@ class Main(QMainWindow):
         size = self.geometry()
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2)
+        logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
+        self.ui.labelLogo.setPixmap(logo)
+        
+        # Images
+        plus_img = QPixmap("QtUI/plus.png")
+        upload_img = QPixmap("QtUI/upload.png")
+        download_img = QPixmap("QtUI/download.png")
+        plus_hw_img = QPixmap("QtUI/plus.png")
+        plus_item_img = QPixmap("QtUI/plus.png")
+        plus_client_img = QPixmap("QtUI/plus.png")
+        plus_foto_img = QPixmap("QtUI/add_photo.png")
+        minus_img = QPixmap("QtUI/minus.png")
+        trash_img = QPixmap("QtUI/trash.png")
+        minus_hw_img = QPixmap("QtUI/minus.png")
+        minus_item_img = QPixmap("QtUI/minus.png")
+        minus_client_img = QPixmap("QtUI/minus.png")
+        minus_foto_img = QPixmap("QtUI/delete_photo.png")
+        pass_img = QPixmap("QtUI/password.png")
+        login_img = QPixmap("QtUI/login.png")
+        logout_img = QPixmap("QtUI/logout.png")
+        users_img = QPixmap("QtUI/users.png")
+        logs = QPixmap("QtUI/log.png")
+        pdf = QPixmap("QtUI/pdf.png")
+        save = QPixmap("QtUI/save.png")
+        modify = QPixmap("QtUI/modify.png")
+
+        # GUI
         self.ui.tableWidget.setColumnWidth(2, 345)
+        self.ui.tableWidgetImg.clicked.connect(self.img)
+        self.ui.tableWidget_attachments.clicked.connect(self._readFile)
+        
         self.ui.cbClient.clear()
         self.ui.cbClient.addItem('Seleziona')
         self.ui.cbClient.currentTextChanged['QString'].connect(self._table_view)
         self.ui.cbClient.currentTextChanged['QString'].connect(self.update_hardware)
         self.ui.cbClient.currentTextChanged['QString'].connect(self._table_foto)
-        self.ui.tableWidgetImg.clicked.connect(self.img)
-        self.ui.tableWidget_attachments.clicked.connect(self._readFile)
-        plus_img = QPixmap("QtUI/plus.png")
+        
         self.ui.btPlus.setIcon(QIcon(plus_img))
         self.ui.btPlus.setToolTip('Aggiungi configurazione')
         self.ui.btPlus.setToolTipDuration(10000)
-        upload_img = QPixmap("QtUI/upload.png")
+        
         self.ui.btUpload.setIcon(QIcon(upload_img))
         self.ui.btUpload.setToolTip('Aggiungi file')
         self.ui.btUpload.setToolTipDuration(10000)
-        download_img = QPixmap("QtUI/download.png")
+        
         self.ui.btDownload.setIcon(QIcon(download_img))
         self.ui.btDownload.setToolTip('Scarica file')
         self.ui.btDownload.setToolTipDuration(10000)
-        plus_hw_img = QPixmap("QtUI/plus.png")
+        
         self.ui.btHwPlus.setIcon(QIcon(plus_hw_img))
         self.ui.btHwPlus.setToolTip('Aggiungi Hardware')
         self.ui.btHwPlus.setToolTipDuration(10000)
-        plus_item_img = QPixmap("QtUI/plus.png")
+        
         self.ui.btItemPlus.setIcon(QIcon(plus_item_img))
         self.ui.btItemPlus.setToolTip('Aggiungi Campo per il Hardware')
         self.ui.btItemPlus.setToolTipDuration(10000)
-        plus_client_img = QPixmap("QtUI/plus.png")
+        
         self.ui.btClientPlus.setIcon(QIcon(plus_client_img))
         self.ui.btClientPlus.setToolTip('Aggiungi Nuovo Cliente')
         self.ui.btClientPlus.setToolTipDuration(10000)
-        plus_foto_img = QPixmap("QtUI/add_photo.png")
+        
         self.ui.btPlus_foto.setIcon(QIcon(plus_foto_img))
-        self.ui.btPlus_foto.setToolTip('Aggiungi nuova foto')
+        self.ui.btPlus_foto.setText('Aggiungi')
         self.ui.btPlus_foto.setToolTipDuration(10000)
-        minus_img = QPixmap("QtUI/minus.png")
+        
         self.ui.btMinus.setIcon(QIcon(minus_img))
         self.ui.btMinus.setToolTip('Cancella configurazione')
         self.ui.btMinus.setToolTipDuration(10000)
-        trash_img = QPixmap("QtUI/trash.png")
+        
         self.ui.btTrash.setIcon(QIcon(trash_img))
         self.ui.btTrash.setToolTip('Cancella file')
         self.ui.btTrash.setToolTipDuration(10000)
-        minus_hw_img = QPixmap("QtUI/minus.png")
+        
         self.ui.btHwMinus.setIcon(QIcon(minus_hw_img))
         self.ui.btHwMinus.setToolTip('Cancella Hardware selezzionato')
         self.ui.btHwMinus.setToolTipDuration(10000)
-        minus_item_img = QPixmap("QtUI/minus.png")
+        
         self.ui.btItemMinus.setIcon(QIcon(minus_item_img))
         self.ui.btItemMinus.setToolTip('Cancella Campo selezzionato')
         self.ui.btItemMinus.setToolTipDuration(10000)
-        minus_client_img = QPixmap("QtUI/minus.png")
+        
         self.ui.btClientMinus.setIcon(QIcon(minus_client_img))
         self.ui.btClientMinus.setToolTip('Cancella Cliente con tutti i suoi dati')
-        self.ui.btClientMinus.setToolTipDuration(10000)
-        minus_foto_img = QPixmap("QtUI/delete_photo.png")
+        
         self.ui.btMinus_foto.setIcon(QIcon(minus_foto_img))
-        self.ui.btMinus_foto.setToolTip('Cancella foto della galleria')
-        self.ui.btMinus_foto.setToolTipDuration(10000)
-        pass_img = QPixmap("QtUI/password.png")
+        self.ui.btMinus_foto.setText('Cancella')
+        
         self.ui.btPassword.setIcon(QIcon(pass_img))
         self.ui.btPassword.setToolTip('Cambio password attuale')
         self.ui.btPassword.setToolTipDuration(10000)
-        login_img = QPixmap("QtUI/login.png")
+        
         self.ui.btLogin.setIcon(QIcon(login_img))
         self.ui.btLogin.setToolTip('Login')
         self.ui.btLogin.setToolTipDuration(10000)
-        logout_img = QPixmap("QtUI/logout.png")
+        
         self.ui.btLogout.setIcon(QIcon(logout_img))
         self.ui.btLogout.setToolTip('Uscire del programa')
         self.ui.btLogout.setToolTipDuration(10000)
-        users_img = QPixmap("QtUI/users.png")
+        
         self.ui.btUsers.setIcon(QIcon(users_img))
         self.ui.btUsers.setToolTip('Lista utenti per l\'accesso al sistema')
         self.ui.btUsers.setToolTipDuration(10000)
-        logs = QPixmap("QtUI/log.png")
+        
         self.ui.btLogs.setIcon(QIcon(logs))
         self.ui.btLogs.setToolTip('Logs del sistema')
         self.ui.btLogs.setToolTipDuration(10000)
-        pdf = QPixmap("QtUI/pdf.png")
+        
         self.ui.btPDF.setIcon(QIcon(pdf))
         self.ui.btPDF.setToolTip('Salva in formato PDF')
         self.ui.btPDF.setToolTipDuration(10000)
-        save = QPixmap("QtUI/save.png")
+        
         self.ui.btSave.setIcon(QIcon(save))
         self.ui.btSave.setToolTip('Salva cambiamenti')
         self.ui.btSave.setToolTipDuration(10000)
-        modify = QPixmap("QtUI/modify.png")
+        
         self.ui.btModify.setIcon(QIcon(modify))
         self.ui.btModify.setToolTip('Abilita modifica')
         self.ui.btModify.setToolTipDuration(10000)
+        
+        # Button events
         self.ui.btClientPlus.clicked.connect(self._new_client)
         self.ui.btClientMinus.clicked.connect(self._delete_client)
+        
         self.ui.btHwPlus.clicked.connect(self._new_hardware)
         self.ui.btHwMinus.clicked.connect(self._delete_hardware)
+        
         self.ui.btItemPlus.clicked.connect(self._new_item)
         self.ui.btItemMinus.clicked.connect(self._delete_item)
+        
         self.ui.btPlus.clicked.connect(self._add_line)
         self.ui.btMinus.clicked.connect(self._delete_line)
+
         self.ui.btPlus_foto.clicked.connect(self._add_foto)
         self.ui.btMinus_foto.clicked.connect(self._del_foto)
+        
         self.ui.btPassword.clicked.connect(self._change_pwd)
+        
         self.ui.btLogin.clicked.connect(self._login)
+        
         self.ui.btLogout.clicked.connect(self._ready)
+        
         self.ui.btUsers.clicked.connect(self.utenti)
+        
         self.ui.btLogs.clicked.connect(self.logs)
+        
         self.ui.btPDF.clicked.connect(self._pdf)
+        
         self.ui.btUpload.clicked.connect(self._uploadFile)
+        
         self.ui.btDownload.clicked.connect(self._downloadFile)
+        
         self.ui.btTrash.clicked.connect(self._deleteFile)
+        
         self.ui.btSave.clicked.connect(self._save_text)
+        
         self.ui.btModify.clicked.connect(self._modify_enabled)
+        
         self.ui.labelFoto.mousePressEvent = self.img_normal_size
+        
         self._want_to_close = False
-        logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
-        self.ui.labelLogo.setPixmap(logo)
+        
         self._ready()
 
     def _ready(self):
@@ -214,6 +258,9 @@ class Main(QMainWindow):
         self.ui.labelupdate.setDisabled(True)
         self.ui.labelallowmodify.setDisabled(True)
         self.ui.btModify.setDisabled(True)
+        self.ui.btUpload.setDisabled(True)
+        self.ui.btDownload.setDisabled(True)
+        self.ui.btTrash.setDisabled(True)
         self.no_image()
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
 
@@ -249,11 +296,17 @@ class Main(QMainWindow):
                 self.ui.labelallowmodify.setDisabled(True)
                 self.ui.btModify.setDisabled(True)
                 self.ui.btLogin.setDisabled(True)
+                self.ui.btUpload.setDisabled(False)
+                self.ui.btDownload.setDisabled(False)
                 if login._login == 'admin':
                     self.ui.btUsers.setHidden(False)
                     self.ui.btPDF.setHidden(False)
                     self.ui.btLogs.setHidden(False)
+                    self.ui.btMinus_foto.setDisabled(False)
+                    self.ui.btTrash.setDisabled(False)
                 else:
+                    self.ui.btMinus_foto.setDisabled(True)
+                    self.ui.btTrash.setDisabled(True)
                     self.ui.btUsers.setHidden(True)
                     self.ui.btPDF.setHidden(True)
                     self.ui.btLogs.setHidden(True)
@@ -496,12 +549,17 @@ class Main(QMainWindow):
             self.ui.btSave.setDisabled(True)
 
     def _deleteFile(self):
-        reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=203) + '%s ?' % self.ui.cbClient.currentText(), QMessageBox.Yes, QMessageBox.No)
-        if reply == QMessageBox.Yes:
-            sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
-                                                      self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
-            self._table_files()
-            self.statusBar().showMessage(codes.msg(code=100), 4000)
+        if self.ui.tableWidget_attachments.rowCount() is 0:
+            self.statusBar().showMessage(codes.msg(code=303), 4000)
+        else:
+            reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=203) + '%s ?' % self.ui.cbClient.currentText(), QMessageBox.Yes, QMessageBox.No)
+            if reply == QMessageBox.Yes:
+                sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
+                                                          self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
+                self._table_files()
+                self.statusBar().showMessage(codes.msg(code=100), 4000)
+            else:
+                pass
     
     def _downloadFile(self):
         buffer = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(),
@@ -585,6 +643,7 @@ class Main(QMainWindow):
                     self.ui.tableWidgetImg.setCellWidget(row, 0, img)
                     _img.append(image[row][1])
                 self.id_image = _img
+                self.no_image()
             except:
                 self.no_image()
     
