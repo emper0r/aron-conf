@@ -513,22 +513,25 @@ class Main(QMainWindow):
             qApp.exit(0)
 
     def _uploadFile(self):
-        dlg = QFileDialog()
-        dlg.setFileMode(QFileDialog.AnyFile)
-        dlg.selectNameFilter(codes.msg(code=101))
-        fname = dlg.getOpenFileName(self, 'Seleziona file', codes.msg(code=117))
-        if str(fname[0])[-3:] == 'txt' \
-            or str(fname[0])[-3:] == 'rtf' \
-            or str(fname[0])[-3:] == 'xls' \
-            or str(fname[0])[-3:] == 'xlsx' \
-            or str(fname[0])[-3:] == 'conf' \
-            or str(fname[0])[-3:] == 'sql' \
-            or str(fname[0])[-3:] == 'dat':
-            sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
-            self._table_files()
-            self.statusBar().showMessage(codes.msg(code=101), 4000)
+        if self.ui.cbClient.currentText() == 'Seleziona':
+            self.statusBar().showMessage(codes.msg(code=301), 4000)
         else:
-            QMessageBox.about(self, 'Attenzione', codes.msg(code=100))
+            dlg = QFileDialog()
+            dlg.setFileMode(QFileDialog.AnyFile)
+            dlg.selectNameFilter(codes.msg(code=101))
+            fname = dlg.getOpenFileName(self, 'Seleziona file', codes.msg(code=117))
+            if str(fname[0])[-3:] == 'txt' \
+                or str(fname[0])[-3:] == 'rtf' \
+                or str(fname[0])[-3:] == 'xls' \
+                or str(fname[0])[-3:] == 'xlsx' \
+                or str(fname[0])[-3:] == 'conf' \
+                or str(fname[0])[-3:] == 'sql' \
+                or str(fname[0])[-3:] == 'dat':
+                sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
+                self._table_files()
+                self.statusBar().showMessage(codes.msg(code=101), 4000)
+            else:
+                QMessageBox.about(self, 'Attenzione', codes.msg(code=100))
 
     def _readFile(self):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
@@ -549,17 +552,20 @@ class Main(QMainWindow):
             self.ui.btSave.setDisabled(True)
 
     def _deleteFile(self):
-        if self.ui.tableWidget_attachments.rowCount() is 0:
-            self.statusBar().showMessage(codes.msg(code=303), 4000)
+        if self.ui.cbClient.currentText() == 'Seleziona':
+            self.statusBar().showMessage(codes.msg(code=301), 4000)
         else:
-            reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=203) + '%s ?' % self.ui.cbClient.currentText(), QMessageBox.Yes, QMessageBox.No)
-            if reply == QMessageBox.Yes:
-                sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
-                                                          self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
-                self._table_files()
-                self.statusBar().showMessage(codes.msg(code=100), 4000)
+            if self.ui.tableWidget_attachments.rowCount() is 0:
+                self.statusBar().showMessage(codes.msg(code=303), 4000)
             else:
-                pass
+                reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=203) + '%s ?' % self.ui.cbClient.currentText(), QMessageBox.Yes, QMessageBox.No)
+                if reply == QMessageBox.Yes:
+                    sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
+                                                              self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
+                    self._table_files()
+                    self.statusBar().showMessage(codes.msg(code=100), 4000)
+                else:
+                    pass
     
     def _downloadFile(self):
         buffer = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(),
