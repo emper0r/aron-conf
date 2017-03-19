@@ -52,7 +52,7 @@ class DialogLogin(QDialog, Ui_DialogLogin):
             qApp.exit(0)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Enter:
+        if event.key() == Qt.Key_Return:
             self.accept()
         if event.key() == Qt.Key_Escape:
             sql_query.Q(action='log', kwargs=[self.EditLogin.text(), codes.msg(code=404) + self.EditLogin.text()])
