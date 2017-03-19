@@ -45,7 +45,10 @@ __version__ = '1.0'
 class Main(QMainWindow):
     id_image = []
     _fs = 0
-
+    _hw = ''
+    _field = ''
+    _value = ''
+    
     def __init__(self):
         QMainWindow.__init__(self)
         self.ui = mainwindow_ui.Ui_MainWindow()
@@ -140,6 +143,9 @@ class Main(QMainWindow):
         
         self.ui.btMinus_foto.setIcon(QIcon(minus_foto_img))
         self.ui.btMinus_foto.setText('Cancella')
+
+        self.ui.btSaveModify.setIcon(QIcon(save))
+        self.ui.btSaveModify.setText('Modifica')
         
         self.ui.btPassword.setIcon(QIcon(pass_img))
         self.ui.btPassword.setToolTip('Cambio password attuale')
@@ -213,6 +219,9 @@ class Main(QMainWindow):
         
         self.ui.labelFoto.mousePressEvent = self.img_normal_size
         
+        self.ui.tableWidget.doubleClicked.connect(self._freeze_table)
+        self.ui.btSaveModify.clicked.connect(self._unfreeze_table)
+        
         self._want_to_close = False
         
         self._ready()
@@ -261,6 +270,7 @@ class Main(QMainWindow):
         self.ui.btUpload.setDisabled(True)
         self.ui.btDownload.setDisabled(True)
         self.ui.btTrash.setDisabled(True)
+        self.ui.btSaveModify.setDisabled(True)
         self.no_image()
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
 
@@ -296,6 +306,7 @@ class Main(QMainWindow):
                 self.ui.labelallowmodify.setDisabled(True)
                 self.ui.btModify.setDisabled(True)
                 self.ui.btLogin.setDisabled(True)
+                self.ui.btSaveModify.setDisabled(True)
                 self.ui.btUpload.setDisabled(False)
                 self.ui.btDownload.setDisabled(False)
                 if login._login == 'admin':
@@ -740,3 +751,45 @@ class Main(QMainWindow):
             self.statusBar().showMessage(codes.msg(code=500), 4000)
         else:
             QMessageBox.about(self, 'Attenzione', codes.msg(code=301))
+
+    def _freeze_table(self):
+        self._hw = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
+        self._field = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
+        self._value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+        self.ui.cbClient.setDisabled(True)
+        self.ui.cbHardware.setDisabled(True)
+        self.ui.cbItem.setDisabled(True)
+        self.ui.btClientMinus.setDisabled(True)
+        self.ui.btClientPlus.setDisabled(True)
+        self.ui.btHwMinus.setDisabled(True)
+        self.ui.btHwPlus.setDisabled(True)
+        self.ui.btItemMinus.setDisabled(True)
+        self.ui.btItemPlus.setDisabled(True)
+        self.ui.btPlus.setDisabled(True)
+        self.ui.btMinus.setDisabled(True)
+        self.ui.btPlus_foto.setDisabled(True)
+        self.ui.btMinus_foto.setDisabled(True)
+        self.ui.btSaveModify.setDisabled(False)
+    
+    def _unfreeze_table(self):
+        self.ui.btSaveModify.setDisabled(True)
+        self.ui.cbClient.setDisabled(False)
+        self.ui.cbHardware.setDisabled(False)
+        self.ui.cbItem.setDisabled(False)
+        self.ui.btClientMinus.setDisabled(False)
+        self.ui.btClientPlus.setDisabled(False)
+        self.ui.btHwMinus.setDisabled(False)
+        self.ui.btHwPlus.setDisabled(False)
+        self.ui.btItemMinus.setDisabled(False)
+        self.ui.btItemPlus.setDisabled(False)
+        self.ui.btPlus.setDisabled(False)
+        self.ui.btMinus.setDisabled(False)
+        self.ui.btPlus_foto.setDisabled(False)
+        self.ui.btMinus_foto.setDisabled(False)
+        client = self.ui.cbClient.currentText()
+        hardware = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
+        field = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
+        value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+        sql_query.Q(action='update_conf', kwargs=[client, hardware, field, value,
+                    self._hw, self._field, self._value])
+        self.statusBar().showMessage(codes.msg(code=100), 4000)

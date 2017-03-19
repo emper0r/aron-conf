@@ -263,6 +263,12 @@ def Q(action=None, kwargs=None):
         idclient = cursor.fetchall()
         sql_ctx = "DELETE FROM tbfiles WHERE id_client='%s' AND name_file='%s';" % (idclient[0][0], kwargs[1])
         cursor.execute(sql_ctx)
+    if action == 'update_conf':
+        query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        idclient = cursor.fetchall()
+        sql_ctx = "UPDATE tbData set hardware='%s', item='%s', it_data='%s' WHERE id_client='%s' AND hardware='%s' AND item='%s' AND it_data='%s';" % \
+                  (kwargs[1], kwargs[2], kwargs[3], idclient[0][0], kwargs[4], kwargs[5], kwargs[6])
+        cursor.execute(sql_ctx)
     conn.commit()
     conn.close()
     return query
