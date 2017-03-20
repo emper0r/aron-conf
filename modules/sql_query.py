@@ -122,7 +122,7 @@ def Q(action=None, kwargs=None):
         cursor.execute(sql_ctx, (hash_pwd.decode('utf-8'), store_hash.decode('utf-8'), kwargs[1]))
         query = cursor.fetchall()
     if action == 'deleteRow':
-        query = "DELETE FROM tbData WHERE hardware='%s' AND item='%s' AND it_data='%s';" % (kwargs[0], kwargs[1], kwargs[2])
+        query = "DELETE FROM tbData WHERE data='%s' AND hardware='%s' AND item='%s' AND it_data='%s';" % (kwargs[0], kwargs[1], kwargs[2], kwargs[3])
         cursor.execute(query)
     if action == 'deleteItem':
         query = "DELETE FROM tbItems WHERE id_client='%s';" % kwargs[0]
@@ -264,10 +264,10 @@ def Q(action=None, kwargs=None):
         sql_ctx = "DELETE FROM tbfiles WHERE id_client='%s' AND name_file='%s';" % (idclient[0][0], kwargs[1])
         cursor.execute(sql_ctx)
     if action == 'update_conf':
-        query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
+        query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[8])
         idclient = cursor.fetchall()
-        sql_ctx = "UPDATE tbData set hardware='%s', item='%s', it_data='%s' WHERE id_client='%s' AND hardware='%s' AND item='%s' AND it_data='%s';" % \
-                  (kwargs[1], kwargs[2], kwargs[3], idclient[0][0], kwargs[4], kwargs[5], kwargs[6])
+        sql_ctx = "UPDATE tbData set data=NOW(), hardware='%s', item='%s', it_data='%s' WHERE id_client='%s' AND data='%s' AND hardware='%s' AND item='%s' AND it_data='%s';" % \
+                  (kwargs[1], kwargs[2], kwargs[3], idclient[0][0], kwargs[4], kwargs[5], kwargs[6], kwargs[7])
         cursor.execute(sql_ctx)
     conn.commit()
     conn.close()

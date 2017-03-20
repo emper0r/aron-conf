@@ -45,6 +45,7 @@ __version__ = '1.0'
 class Main(QMainWindow):
     id_image = []
     _fs = 0
+    _data = ''
     _hw = ''
     _field = ''
     _value = ''
@@ -431,12 +432,13 @@ class Main(QMainWindow):
 
     def _delete_line(self):
         try:
-            hardware = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
-            item = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
-            value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+            data = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
+            hardware = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
+            item = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+            value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 3).text()
             reply = QMessageBox.question(self, 'Attenzione!', codes.msg(code=201), QMessageBox.Yes, QMessageBox.No)
             if reply == QMessageBox.Yes:
-                sql_query.Q(action='deleteRow', kwargs=[hardware, item, value])
+                sql_query.Q(action='deleteRow', kwargs=[data, hardware, item, value])
                 sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=107) + self.ui.cbClient.currentText()])
                 self.statusBar().showMessage(codes.msg(code=100), 4000)
                 self._table_view()
@@ -753,9 +755,10 @@ class Main(QMainWindow):
             QMessageBox.about(self, 'Attenzione', codes.msg(code=301))
 
     def _freeze_table(self):
-        self._hw = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
-        self._field = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
-        self._value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+        self._data = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
+        self._hw = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
+        self._field = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+        self._value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 3).text()
         self.ui.cbClient.setDisabled(True)
         self.ui.cbHardware.setDisabled(True)
         self.ui.cbItem.setDisabled(True)
@@ -787,9 +790,11 @@ class Main(QMainWindow):
         self.ui.btPlus_foto.setDisabled(False)
         self.ui.btMinus_foto.setDisabled(False)
         client = self.ui.cbClient.currentText()
-        hardware = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
-        field = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
-        value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
-        sql_query.Q(action='update_conf', kwargs=[client, hardware, field, value,
-                    self._hw, self._field, self._value])
+        data = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 0).text()
+        hardware = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 1).text()
+        field = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 2).text()
+        value = self.ui.tableWidget.item(self.ui.tableWidget.currentRow(), 3).text()
+        sql_query.Q(action='update_conf', kwargs=[data, hardware, field, value,
+                    self._data, self._hw, self._field, self._value, client])
+        self._table_view()
         self.statusBar().showMessage(codes.msg(code=100), 4000)
