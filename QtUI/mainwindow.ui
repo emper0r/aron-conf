@@ -154,13 +154,30 @@
       </attribute>
       <column>
        <property name="text">
+        <string>Data</string>
+       </property>
+       <property name="font">
+        <font>
+         <family>Monospace</family>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignJustify|AlignVCenter</set>
+       </property>
+      </column>
+      <column>
+       <property name="text">
         <string>Hardware</string>
        </property>
        <property name="font">
         <font>
          <family>Monospace</family>
-         <pointsize>9</pointsize>
+         <pointsize>8</pointsize>
         </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignJustify|AlignVCenter</set>
        </property>
       </column>
       <column>
@@ -170,8 +187,11 @@
        <property name="font">
         <font>
          <family>Monospace</family>
-         <pointsize>9</pointsize>
+         <pointsize>8</pointsize>
         </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignJustify|AlignVCenter</set>
        </property>
       </column>
       <column>
@@ -181,8 +201,11 @@
        <property name="font">
         <font>
          <family>Monospace</family>
-         <pointsize>9</pointsize>
+         <pointsize>8</pointsize>
         </font>
+       </property>
+       <property name="textAlignment">
+        <set>AlignJustify|AlignVCenter</set>
        </property>
       </column>
      </widget>
@@ -891,7 +914,6 @@
      </widget>
      <zorder>line_5</zorder>
      <zorder>btPlus</zorder>
-     <zorder>tableWidget</zorder>
      <zorder>labelLines</zorder>
      <zorder>labelConnesso</zorder>
      <zorder>line_2</zorder>
@@ -922,6 +944,7 @@
      <zorder>labelallowmodify</zorder>
      <zorder>labelDeleteFile</zorder>
      <zorder>btSaveModify</zorder>
+     <zorder>tableWidget</zorder>
     </widget>
     <widget class="QWidget" name="tab_attachments">
      <attribute name="title">

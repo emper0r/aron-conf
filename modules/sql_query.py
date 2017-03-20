@@ -78,7 +78,7 @@ def Q(action=None, kwargs=None):
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
     if action == 'tableView':
-        sql_ctx = "SELECT tbData.hardware, tbData.item, tbData.it_data " \
+        sql_ctx = "SELECT tbData.data, tbData.hardware, tbData.item, tbData.it_data " \
                   "FROM tbData, tbClient " \
                   "WHERE tbClient.id_client=tbData.id_client " \
                   "AND client='%s';" % kwargs[0]

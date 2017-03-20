@@ -84,7 +84,7 @@ class Main(QMainWindow):
         modify = QPixmap("QtUI/modify.png")
 
         # GUI
-        self.ui.tableWidget.setColumnWidth(2, 345)
+        self.ui.tableWidget.setColumnWidth(3, 345)
         self.ui.tableWidgetImg.clicked.connect(self.img)
         self.ui.tableWidget_attachments.clicked.connect(self._readFile)
         
@@ -496,7 +496,7 @@ class Main(QMainWindow):
         db_table = sorted(tmp_values)
         for row in range(0, len(db_table)):
             self.ui.tableWidget.insertRow(self.ui.tableWidget.rowCount())
-            for colum in range(0, 3):
+            for colum in range(0, 4):
                 value = QTableWidgetItem(str(db_table[row][colum]), 0)
                 self.ui.tableWidget.setItem(row, colum, value)
                 colum += 1
