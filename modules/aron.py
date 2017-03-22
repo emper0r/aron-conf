@@ -85,7 +85,7 @@ class Main(QMainWindow):
         modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'modify.png'))
 
         # GUI
-        self.ui.tableWidget.setColumnWidth(3, 345)
+        self.ui.tableWidget.setColumnWidth(3, 562)
         self.ui.tableWidgetImg.clicked.connect(self.img)
         self.ui.tableWidget_attachments.clicked.connect(self._readFile)
         
@@ -682,10 +682,10 @@ class Main(QMainWindow):
 
     def img_normal_size(self, event):
         if self._fs == 1:
-            self.ui.labelFoto.setGeometry(260, 50, 700, 550)
+            self.ui.labelFoto.setGeometry(260, 9, 1031, 591)
             self._fs = 0
         else:
-            self.ui.labelFoto.setGeometry(260, 50, 700, 550)
+            self.ui.labelFoto.setGeometry(260, 9, 1031, 591)
             #self.ui.labelFoto.setGeometry(0, 0, 1030, 700)
             self._fs = 1
 
