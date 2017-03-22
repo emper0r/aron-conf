@@ -63,54 +63,59 @@
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="24" parent="7" name="id_client">
+    <column id="24" parent="6" name="data">
+      <Position>5</Position>
+      <DataType>datetime|0</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+    </column>
+    <column id="25" parent="7" name="id_client">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="25" parent="7" name="image">
+    <column id="26" parent="7" name="image">
       <Position>2</Position>
       <DataType>longblob|0</DataType>
     </column>
-    <column id="26" parent="7" name="id">
+    <column id="27" parent="7" name="id">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <index id="27" parent="7" name="tbGallery_id_uindex">
+    <index id="28" parent="7" name="tbGallery_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="28" parent="7" name="PRIMARY">
+    <key id="29" parent="7" name="PRIMARY">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="29" parent="7" name="tbGallery_id_uindex">
+    <key id="30" parent="7" name="tbGallery_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>tbGallery_id_uindex</UnderlyingIndexName>
     </key>
-    <column id="30" parent="8" name="id_hardware">
+    <column id="31" parent="8" name="id_hardware">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="31" parent="8" name="hardware">
+    <column id="32" parent="8" name="hardware">
       <Position>2</Position>
       <DataType>varchar(45)|0</DataType>
     </column>
-    <column id="32" parent="8" name="id_client">
+    <column id="33" parent="8" name="id_client">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <index id="33" parent="8" name="fk_hardware_2_idx">
+    <index id="34" parent="8" name="fk_hardware_2_idx">
       <ColNames>id_client</ColNames>
     </index>
-    <key id="34" parent="8" name="PRIMARY">
+    <key id="35" parent="8" name="PRIMARY">
       <ColNames>id_hardware</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="35" parent="8" name="fk_hardware">
+    <foreign-key id="36" parent="8" name="fk_hardware">
       <ColNames>id_client</ColNames>
       <RefSchemaName>aron_conf</RefSchemaName>
       <RefTableName>tbClient</RefTableName>
@@ -119,104 +124,99 @@
       <OnUpdate>no-action</OnUpdate>
       <OnDelete>no-action</OnDelete>
     </foreign-key>
-    <column id="36" parent="9" name="hw">
+    <column id="37" parent="9" name="hw">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="37" parent="9" name="tbHw_hw_uindex">
+    <index id="38" parent="9" name="tbHw_hw_uindex">
       <ColNames>hw</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="38" parent="9" name="tbHw_hw_uindex">
+    <key id="39" parent="9" name="tbHw_hw_uindex">
       <ColNames>hw</ColNames>
       <UnderlyingIndexName>tbHw_hw_uindex</UnderlyingIndexName>
     </key>
-    <column id="39" parent="10" name="items">
+    <column id="40" parent="10" name="items">
       <Position>1</Position>
       <DataType>varchar(255)|0</DataType>
     </column>
-    <index id="40" parent="10" name="tbIt_items_uindex">
+    <index id="41" parent="10" name="tbIt_items_uindex">
       <ColNames>items</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="41" parent="10" name="tbIt_items_uindex">
+    <key id="42" parent="10" name="tbIt_items_uindex">
       <ColNames>items</ColNames>
       <UnderlyingIndexName>tbIt_items_uindex</UnderlyingIndexName>
     </key>
-    <column id="42" parent="11" name="id_hardware">
+    <column id="43" parent="11" name="id_hardware">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="43" parent="11" name="items">
+    <column id="44" parent="11" name="items">
       <Position>2</Position>
       <DataType>varchar(255)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="11" name="id_client">
+    <column id="45" parent="11" name="id_client">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="45" parent="11" name="fk_items_1_idx">
+    <index id="46" parent="11" name="fk_items_1_idx">
       <ColNames>id_hardware
 id_client</ColNames>
     </index>
-    <index id="46" parent="11" name="fk_tbItems_2_idx">
+    <index id="47" parent="11" name="fk_tbItems_2_idx">
       <ColNames>id_client</ColNames>
     </index>
-    <column id="47" parent="12" name="tbUser">
+    <column id="48" parent="12" name="tbUser">
       <Position>1</Position>
       <DataType>varchar(16)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="48" parent="12" name="tbPass">
+    <column id="49" parent="12" name="tbPass">
       <Position>2</Position>
       <DataType>varchar(64)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="49" parent="12" name="enable">
+    <column id="50" parent="12" name="enable">
       <Position>3</Position>
       <DataType>int(1)|0</DataType>
     </column>
-    <column id="50" parent="12" name="hash">
+    <column id="51" parent="12" name="hash">
       <Position>4</Position>
       <DataType>varchar(32)|0</DataType>
     </column>
-    <index id="51" parent="12" name="tbPass_UNIQUE">
+    <index id="52" parent="12" name="tbPass_UNIQUE">
       <ColNames>tbPass</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="52" parent="12" name="tbUsers_UNIQUE">
+    <index id="53" parent="12" name="tbUsers_UNIQUE">
       <ColNames>tbUser</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="53" parent="12" name="tbUsers_UNIQUE">
+    <key id="54" parent="12" name="tbUsers_UNIQUE">
       <ColNames>tbUser</ColNames>
       <UnderlyingIndexName>tbUsers_UNIQUE</UnderlyingIndexName>
     </key>
-    <key id="54" parent="12" name="tbPass_UNIQUE">
+    <key id="55" parent="12" name="tbPass_UNIQUE">
       <ColNames>tbPass</ColNames>
       <UnderlyingIndexName>tbPass_UNIQUE</UnderlyingIndexName>
     </key>
-    <column id="55" parent="13" name="name_file">
+    <column id="56" parent="13" name="name_file">
       <Position>1</Position>
       <DataType>varchar(40)|0</DataType>
     </column>
-    <column id="56" parent="13" name="buffer">
+    <column id="57" parent="13" name="buffer">
       <Position>2</Position>
-      <DataType>longblob|0</DataType>
+      <DataType>longtext|0</DataType>
     </column>
-    <column id="57" parent="13" name="id_client">
+    <column id="58" parent="13" name="id_client">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
-      <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <key id="58" parent="13" name="PRIMARY">
-      <ColNames>id_client</ColNames>
-      <Primary>1</Primary>
-    </key>
   </database-model>
 </dataSource>
