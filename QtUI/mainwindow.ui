@@ -390,8 +390,8 @@
      <widget class="QComboBox" name="cbItem">
       <property name="geometry">
        <rect>
-        <x>636</x>
-        <y>18</y>
+        <x>570</x>
+        <y>28</y>
         <width>179</width>
         <height>25</height>
        </rect>
@@ -420,8 +420,8 @@
      <widget class="QLabel" name="labelItems">
       <property name="geometry">
        <rect>
-        <x>588</x>
-        <y>20</y>
+        <x>570</x>
+        <y>10</y>
         <width>41</width>
         <height>20</height>
        </rect>
@@ -445,7 +445,7 @@
       <property name="geometry">
        <rect>
         <x>262</x>
-        <y>21</y>
+        <y>12</y>
         <width>71</width>
         <height>20</height>
        </rect>
@@ -468,8 +468,8 @@
      <widget class="QComboBox" name="cbHardware">
       <property name="geometry">
        <rect>
-        <x>331</x>
-        <y>18</y>
+        <x>261</x>
+        <y>28</y>
         <width>179</width>
         <height>25</height>
        </rect>
@@ -501,7 +501,7 @@
      <widget class="QLabel" name="labelFiltri">
       <property name="geometry">
        <rect>
-        <x>539</x>
+        <x>510</x>
         <y>-1</y>
         <width>50</width>
         <height>20</height>
@@ -525,8 +525,8 @@
      <widget class="QPushButton" name="btItemMinus">
       <property name="geometry">
        <rect>
-        <x>840</x>
-        <y>19</y>
+        <x>774</x>
+        <y>29</y>
         <width>24</width>
         <height>25</height>
        </rect>
@@ -550,8 +550,8 @@
      <widget class="QPushButton" name="btHwMinus">
       <property name="geometry">
        <rect>
-        <x>535</x>
-        <y>17</y>
+        <x>464</x>
+        <y>27</y>
         <width>24</width>
         <height>25</height>
        </rect>
@@ -575,8 +575,8 @@
      <widget class="QPushButton" name="btHwPlus">
       <property name="geometry">
        <rect>
-        <x>510</x>
-        <y>17</y>
+        <x>439</x>
+        <y>27</y>
         <width>24</width>
         <height>25</height>
        </rect>
@@ -600,8 +600,8 @@
      <widget class="QPushButton" name="btItemPlus">
       <property name="geometry">
        <rect>
-        <x>815</x>
-        <y>19</y>
+        <x>749</x>
+        <y>29</y>
         <width>24</width>
         <height>25</height>
        </rect>
@@ -1000,7 +1000,7 @@
      <widget class="Line" name="line_6">
       <property name="geometry">
        <rect>
-        <x>550</x>
+        <x>520</x>
         <y>18</y>
         <width>20</width>
         <height>41</height>
@@ -1467,7 +1467,7 @@
    <widget class="QComboBox" name="cbClient">
     <property name="geometry">
      <rect>
-      <x>57</x>
+      <x>60</x>
       <y>49</y>
       <width>179</width>
       <height>25</height>
@@ -1497,7 +1497,7 @@
    <widget class="QPushButton" name="btClientPlus">
     <property name="geometry">
      <rect>
-      <x>242</x>
+      <x>245</x>
       <y>50</y>
       <width>24</width>
       <height>25</height>
@@ -1522,7 +1522,7 @@
    <widget class="QPushButton" name="btClientMinus">
     <property name="geometry">
      <rect>
-      <x>267</x>
+      <x>270</x>
       <y>50</y>
       <width>24</width>
       <height>25</height>
@@ -1547,8 +1547,8 @@
    <widget class="QLabel" name="labelCliente">
     <property name="geometry">
      <rect>
-      <x>59</x>
-      <y>31</y>
+      <x>62</x>
+      <y>32</y>
       <width>61</width>
       <height>20</height>
      </rect>
