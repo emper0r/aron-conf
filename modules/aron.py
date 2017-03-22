@@ -62,27 +62,27 @@ class Main(QMainWindow):
         self.ui.labelLogo.setPixmap(logo)
         
         # Images
-        plus_img = QPixmap("QtUI/plus.png")
-        upload_img = QPixmap("QtUI/upload.png")
-        download_img = QPixmap("QtUI/download.png")
-        plus_hw_img = QPixmap("QtUI/plus.png")
-        plus_item_img = QPixmap("QtUI/plus.png")
-        plus_client_img = QPixmap("QtUI/plus.png")
-        plus_foto_img = QPixmap("QtUI/add_photo.png")
-        minus_img = QPixmap("QtUI/minus.png")
-        trash_img = QPixmap("QtUI/trash.png")
-        minus_hw_img = QPixmap("QtUI/minus.png")
-        minus_item_img = QPixmap("QtUI/minus.png")
-        minus_client_img = QPixmap("QtUI/minus.png")
-        minus_foto_img = QPixmap("QtUI/delete_photo.png")
-        pass_img = QPixmap("QtUI/password.png")
-        login_img = QPixmap("QtUI/login.png")
-        logout_img = QPixmap("QtUI/logout.png")
-        users_img = QPixmap("QtUI/users.png")
-        logs = QPixmap("QtUI/log.png")
-        pdf = QPixmap("QtUI/pdf.png")
-        save = QPixmap("QtUI/save.png")
-        modify = QPixmap("QtUI/modify.png")
+        plus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
+        upload_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'upload.png'))
+        download_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'download.png'))
+        plus_hw_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
+        plus_item_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
+        plus_client_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
+        plus_foto_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'add_photo.png'))
+        minus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
+        trash_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'trash.png'))
+        minus_hw_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
+        minus_item_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
+        minus_client_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
+        minus_foto_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'delete_photo.png'))
+        pass_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'password.png'))
+        login_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'login.png'))
+        logout_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'logout.png'))
+        users_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', '../QtUI/users.png'))
+        logs = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'log.png'))
+        pdf = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'pdf.png'))
+        save = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'save.png'))
+        modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'modify.png'))
 
         # GUI
         self.ui.tableWidget.setColumnWidth(3, 345)
@@ -543,8 +543,9 @@ class Main(QMainWindow):
                 sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
                 self._table_files()
                 self.statusBar().showMessage(codes.msg(code=101), 4000)
-            else:
                 QMessageBox.about(self, 'Attenzione', codes.msg(code=100))
+            else:
+                pass
 
     def _readFile(self):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
@@ -576,6 +577,7 @@ class Main(QMainWindow):
                     sql_query.Q(action='delete_file', kwargs=[self.ui.cbClient.currentText(),
                                                               self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
                     self._table_files()
+                    self._table_view()
                     self.statusBar().showMessage(codes.msg(code=100), 4000)
                 else:
                     pass
