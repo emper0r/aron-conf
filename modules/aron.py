@@ -762,7 +762,7 @@ class Main(QMainWindow):
             elements.append(Spacer(1, 12))
             elements.append(Paragraph('', s))
 
-            data = [[Paragraph(cell, s) for cell in row]
+            data = [[Paragraph(str(cell), s) for cell in row]
                     for row in items]
             t = Table(data)
             t.setStyle(style)
