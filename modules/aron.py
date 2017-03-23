@@ -310,18 +310,21 @@ class Main(QMainWindow):
                 self.ui.btSaveModify.setDisabled(True)
                 self.ui.btUpload.setDisabled(False)
                 self.ui.btDownload.setDisabled(False)
+                self.ui.btTrash.setDisabled(True)
                 if login._login == 'admin':
                     self.ui.btUsers.setHidden(False)
                     self.ui.btPDF.setHidden(False)
                     self.ui.btLogs.setHidden(False)
                     self.ui.btMinus_foto.setDisabled(False)
                     self.ui.btTrash.setDisabled(False)
+                    sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=405) + 'admin'])
                 else:
                     self.ui.btMinus_foto.setDisabled(True)
                     self.ui.btTrash.setDisabled(True)
                     self.ui.btUsers.setHidden(True)
                     self.ui.btPDF.setHidden(True)
                     self.ui.btLogs.setHidden(True)
+                    sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=405) + self.ui.labelUserName.text()])
                 self.ui.cbClient.setFocus(True)
                 self.list_clients()
         except:
@@ -536,21 +539,25 @@ class Main(QMainWindow):
             if str(fname[0])[-3:] == 'txt' \
                 or str(fname[0])[-3:] == 'rtf' \
                 or str(fname[0])[-3:] == 'xls' \
-                or str(fname[0])[-3:] == 'xlsx' \
-                or str(fname[0])[-3:] == 'conf' \
+                or str(fname[0])[-3:] == 'lsx' \
+                or str(fname[0])[-3:] == 'onf' \
                 or str(fname[0])[-3:] == 'sql' \
+                or str(fname[0])[-3:] == 'doc' \
+                or str(fname[0])[-3:] == 'ocx' \
+                or str(fname[0])[-3:] == 'pdf' \
+                or str(fname[0])[-3:] == 'xml' \
                 or str(fname[0])[-3:] == 'dat':
                 sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
                 self._table_files()
                 self.statusBar().showMessage(codes.msg(code=101), 4000)
-                QMessageBox.about(self, 'Attenzione', codes.msg(code=100))
+                sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=406) + str(fname[0]) + ' per il cliente ' + self.ui.cbClient.currentText()])
             else:
                 pass
 
     def _readFile(self):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
             file = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(), str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())])
-            sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=111) + 'cliente ' + self.ui.cbClient.currentText()])
+            sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=407) + 'cliente ' + self.ui.cbClient.currentText()])
             self.ui.plainTextEdit.setPlainText(file[0][0])
             self.ui.labelallowmodify.setDisabled(False)
             self.ui.btModify.setDisabled(False)
@@ -578,6 +585,10 @@ class Main(QMainWindow):
                                                               self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()])
                     self._table_files()
                     self._table_view()
+                    sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(),
+                                                      codes.msg(code=408) +
+                                                      self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text() +
+                                                      ' dal cliente ' + self.ui.cbClient.currentText()])
                     self.statusBar().showMessage(codes.msg(code=100), 4000)
                 else:
                     pass
@@ -590,6 +601,10 @@ class Main(QMainWindow):
         filedata = str(buffer[0][0])
         f.write(filedata)
         f.close()
+        sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(),
+                                          codes.msg(code=409) +
+                                          self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text() +
+                                          ' dal cliente ' + self.ui.cbClient.currentText()])
         
     def _modifyFile(self):
         self.ui.btSave.setDisabled(False)
@@ -617,6 +632,10 @@ class Main(QMainWindow):
                                                   self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text(),
                                                   txt])
         self.statusBar().showMessage(codes.msg(code=100), 4000)
+        sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(),
+                                          codes.msg(code=410) +
+                                          self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text() +
+                                          ' dal cliente ' + self.ui.cbClient.currentText()])
 
     def _table_files(self):
         files = sql_query.Q(action='files', kwargs=[self.ui.cbClient.currentText()])

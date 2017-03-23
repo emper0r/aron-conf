@@ -79,6 +79,18 @@ def msg(code=None):
         text = 'Uscita della applicazione'
     if code == 404:
         text = 'Tentativo di accesso erroneo '
+    if code == 405:
+        text = 'Loggato come: '
+    if code == 406:
+        text = 'Caricato file: '
+    if code == 407:
+        text = 'Visualizzato file: '
+    if code == 408:
+        text = 'Cancellato file: '
+    if code == 409:
+        text = 'Scaricato file: '
+    if code == 410:
+        text = 'Modificato configurazione TXT: '
     if code == 500:
         text = 'Generato file di configurazione PDF '
     return text
