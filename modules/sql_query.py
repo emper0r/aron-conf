@@ -235,10 +235,10 @@ def Q(action=None, kwargs=None):
     if action == 'upload':
         query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()
-        file = open(kwargs[1][0], "r")
+        file = open(kwargs[1], "r")
         buffer = file.read()
         sql_ctx = "INSERT INTO tbfiles (id_client, name_file, buffer) VALUES (%s, %s, %s);"
-        cursor.execute(sql_ctx, (int(idclient[0][0]), str(kwargs[1][0]).split('/')[-1], buffer))
+        cursor.execute(sql_ctx, (int(idclient[0][0]), str(kwargs[1]).split('/')[-1], buffer))
     if action == 'files':
         cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()

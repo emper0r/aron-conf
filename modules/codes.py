@@ -42,7 +42,7 @@ def msg(code=None):
     if code == 116:
         text = 'Campo inserito '
     if code == 117:
-        text = 'I files con estensione supportati sono: TXT, RTF, XLS, XLSX, CONF, DAT e SQL'
+        text = 'I files con estensione supportati sono: TXT, RTF, XLS, XLSX, CONF, DAT, DOC, DOCX, XLSX, PDF, XML e SQL'
     if code == 201:
         text = 'Sicuro di cancellare questa informazione '
     if code == 202:

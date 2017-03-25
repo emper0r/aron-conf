@@ -517,7 +517,7 @@ class Main(QMainWindow):
         changePasswd.exec_()
         if int(changePasswd.Accepted) is 1:
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=104)])
-            self.statusBar().showMessage(codes.msg(code=104), 2000)
+            #self.statusBar().showMessage(codes.msg(code=104), 2000)
 
     def quit(self):
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
@@ -534,25 +534,25 @@ class Main(QMainWindow):
         else:
             dlg = QFileDialog()
             dlg.setFileMode(QFileDialog.AnyFile)
-            dlg.selectNameFilter(codes.msg(code=101))
-            fname = dlg.getOpenFileName(self, 'Seleziona file', codes.msg(code=117))
-            if str(fname[0])[-3:] == 'txt' \
-                or str(fname[0])[-3:] == 'rtf' \
-                or str(fname[0])[-3:] == 'xls' \
-                or str(fname[0])[-3:] == 'lsx' \
-                or str(fname[0])[-3:] == 'onf' \
-                or str(fname[0])[-3:] == 'sql' \
-                or str(fname[0])[-3:] == 'doc' \
-                or str(fname[0])[-3:] == 'ocx' \
-                or str(fname[0])[-3:] == 'pdf' \
-                or str(fname[0])[-3:] == 'xml' \
-                or str(fname[0])[-3:] == 'dat':
-                sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname])
-                self._table_files()
-                self.statusBar().showMessage(codes.msg(code=101), 4000)
-                sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=406) + str(fname[0]) + ' per il cliente ' + self.ui.cbClient.currentText()])
-            else:
-                pass
+            fname = dlg.getOpenFileNames()
+            for item in range(0, len(fname)):
+                if str(fname[0][item])[-3:] == 'txt' or \
+                        str(fname[0][item])[-3:] == 'rtf' or \
+                        str(fname[0][item])[-3:] == 'xls' or \
+                        str(fname[0][item])[-3:] == 'lsx' or \
+                        str(fname[0][item])[-3:] == 'onf' or \
+                        str(fname[0][item])[-3:] == 'sql' or \
+                        str(fname[0][item])[-3:] == 'doc' or \
+                        str(fname[0][item])[-3:] == 'ocx' or \
+                        str(fname[0][item])[-3:] == 'pdf' or \
+                        str(fname[0][item])[-3:] == 'xml' or \
+                        str(fname[0][item])[-3:] == 'dat':
+                    sql_query.Q('upload', kwargs=[self.ui.cbClient.currentText(), fname[0][item]])
+                    self._table_files()
+                    self.statusBar().showMessage(codes.msg(code=101), 4000)
+                    sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=406) + str(fname[0][item]) + ' per il cliente ' + self.ui.cbClient.currentText()])
+                else:
+                    pass
 
     def _readFile(self):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
@@ -652,16 +652,17 @@ class Main(QMainWindow):
         else:
             dlg = QFileDialog()
             dlg.setFileMode(QFileDialog.AnyFile)
-            dlg.selectNameFilter(codes.msg(code=101))
-            fname = dlg.getOpenFileName(self, 'Seleziona imagine', codes.msg(code=101))
-            if str(fname[0])[-3:] == 'png' or str(fname[0])[-3:] == 'bmp' or str(fname[0])[-3:] == 'jpg':
-                self.ui.labelFoto.setPixmap(QPixmap(fname[0]))
-                self.ui.labelFoto.setScaledContents(True)
-                sql_query.Q('save_foto', kwargs=[self.ui.cbClient.currentText(), fname[0]])
-                sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=112) + 'cliente ' + self.ui.cbClient.currentText()])
-                self._table_foto()
-            else:
-                self.statusBar().showMessage(codes.msg(code=101), 4000)
+            fname = dlg.getOpenFileNames()
+            for item in range(0, len(fname[0])):
+                if str(fname[0][item])[-3:] == 'png' or str(fname[0][item])[-3:] == 'bmp' or str(fname[0])[-3:] == 'jpg':
+                    self.ui.labelFoto.setPixmap(QPixmap(fname[0][item]))
+                    self.ui.labelFoto.setScaledContents(True)
+                    self._table_foto()
+                    sql_query.Q('save_foto', kwargs=[self.ui.cbClient.currentText(), fname[0][item]])
+                    sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=112) + 'cliente ' + self.ui.cbClient.currentText()])
+                    self._table_foto()
+                else:
+                    self.statusBar().showMessage(codes.msg(code=101), 4000)
 
     def _table_foto(self):
         _img = []
