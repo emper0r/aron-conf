@@ -18,6 +18,7 @@
 # Aron Config :: License GPLv3+
 
 import os
+import platform
 import base64
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, inch
@@ -27,7 +28,8 @@ from reportlab.platypus import SimpleDocTemplate, Image
 from reportlab.platypus.tables import Table
 from PyQt5.Qt import *
 from modules import sql_query
-from modules import mainwindow_ui
+from modules import mainwindow_ui_l
+from modules import mainwindow_ui_w
 from modules import Client
 from modules import Login
 from modules import Hardware
@@ -52,7 +54,10 @@ class Main(QMainWindow):
     
     def __init__(self):
         QMainWindow.__init__(self)
-        self.ui = mainwindow_ui.Ui_MainWindow()
+        if platform.system() == 'Linux':
+            self.ui = mainwindow_ui_l.Ui_MainWindow()
+        else:
+            self.ui = mainwindow_ui_w.Ui_MainWindow()
         self.ui.setupUi(self)
         screen = QDesktopWidget().screenGeometry()
         size = self.geometry()

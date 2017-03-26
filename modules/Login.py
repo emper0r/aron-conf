@@ -17,6 +17,12 @@ class DialogLogin(QDialog, Ui_DialogLogin):
         self._want_to_close = False
         logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
         self.labelLogo.setPixmap(logo)
+        user_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'username.png'))
+        self.labelLogin.setPixmap(user_img.scaled(20, 20))
+        self.labelLogin.setScaledContents(True)
+        passwd_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'password.png'))
+        self.labelPass.setPixmap(passwd_img.scaled(20, 20))
+        self.labelPass.setScaledContents(True)
 
     def accept(self):
         if self.EditLogin.text() == '' or self.EditPass.text() == '':
