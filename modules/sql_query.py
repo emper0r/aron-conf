@@ -156,7 +156,7 @@ def Q(action=None, kwargs=None):
         fd_img = open(kwargs[1], 'r')
         img = Image.open(kwargs[1])
         if int(str(os.stat(kwargs[1]).st_size).strip('L')) > 1048576:
-            img = resizeimage.resize_contain(img, [1030, 700])
+            img = resizeimage.resize_contain(img, [1031, 591])
         else:
             pass
         img.save('tmp.jpeg', img.format)
