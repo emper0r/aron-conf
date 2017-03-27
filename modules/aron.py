@@ -541,7 +541,7 @@ class Main(QMainWindow):
             dlg.setFileMode(QFileDialog.AnyFile)
             fname = dlg.getOpenFileNames()
             try:
-                for item in range(0, len(fname)):
+                for item in range(0, len(fname[0])):
                     if str(fname[0][item])[-3:] == 'txt' or \
                             str(fname[0][item])[-3:] == 'rtf' or \
                             str(fname[0][item])[-3:] == 'xls' or \
