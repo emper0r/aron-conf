@@ -222,7 +222,7 @@ def Q(action=None, kwargs=None):
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
     if action == 'log':
-        cursor.execute("INSERT INTO history (utente, azione) VALUES ('%s', '%s');" % (str(kwargs[0]), str(kwargs[1])))
+        sql_ctx = "INSERT INTO history (log_data, utente, azione) VALUES (now(), '%s', '%s');" % (str(kwargs[0]), str(kwargs[1]))
         cursor.execute(sql_ctx)
     if action == 'allLogs':
         cursor.execute("SELECT * FROM history WHERE log_data BETWEEN ('%s') AND ('%s') ORDER BY log_data DESC;" %
