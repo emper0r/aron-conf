@@ -228,6 +228,8 @@ class Main(QMainWindow):
         self.ui.tableWidget.doubleClicked.connect(self._freeze_table)
         self.ui.btSaveModify.clicked.connect(self._unfreeze_table)
         
+        self.ui.progressBar.setHidden(True)
+        
         self._want_to_close = False
         
         self._ready()
@@ -364,15 +366,18 @@ class Main(QMainWindow):
     def update_hardware(self):
         self.ui.cbHardware.clear()
         self.ui.cbHardware.addItem('Seleziona')
-        hardware = sql_query.Q(action="AllHw", kwargs=[self.ui.cbClient.currentText()])
-        if self.ui.cbClient.currentText() == 'Seleziona':
-            self.ui.cbItem.clear()
-            self.ui.cbItem.addItem('Seleziona')
-        else:
-            for item in range(0, len(hardware)):
-                self.ui.cbHardware.addItem(hardware[item][0])
-            self.ui.cbHardware.itemText(0)
-            self.update_items()
+        try:
+            hardware = sql_query.Q(action="AllHw", kwargs=[self.ui.cbClient.currentText()])
+            if self.ui.cbClient.currentText() == 'Seleziona':
+                self.ui.cbItem.clear()
+                self.ui.cbItem.addItem('Seleziona')
+            else:
+                for item in range(0, len(hardware)):
+                    self.ui.cbHardware.addItem(hardware[item][0])
+                self.ui.cbHardware.itemText(0)
+                self.update_items()
+        except:
+            QMessageBox.about(self, 'Attenzione', codes.msg(code=401))
 
     def update_items(self):
         self.ui.cbItem.clear()
@@ -502,19 +507,22 @@ class Main(QMainWindow):
         self.ui.plainTextEdit.setReadOnly(True)
         for i in reversed(range(self.ui.tableWidget.rowCount())):
             self.ui.tableWidget.removeRow(i)
-        tmp_values = sql_query.Q(action='tableView', kwargs=[self.ui.cbClient.currentText()])
-        db_table = sorted(tmp_values)
-        for row in range(0, len(db_table)):
-            self.ui.tableWidget.insertRow(self.ui.tableWidget.rowCount())
-            for colum in range(0, 4):
-                value = QTableWidgetItem(str(db_table[row][colum]), 0)
-                self.ui.tableWidget.setItem(row, colum, value)
-                colum += 1
-            row += 1
-        if self.ui.cbClient.currentText() == '' or self.ui.cbClient.currentText() == 'Seleziona':
-            return
-        else:
-            self._table_files()
+        try:
+            tmp_values = sql_query.Q(action='tableView', kwargs=[self.ui.cbClient.currentText()])
+            db_table = sorted(tmp_values)
+            for row in range(0, len(db_table)):
+                self.ui.tableWidget.insertRow(self.ui.tableWidget.rowCount())
+                for colum in range(0, 4):
+                    value = QTableWidgetItem(str(db_table[row][colum]), 0)
+                    self.ui.tableWidget.setItem(row, colum, value)
+                    colum += 1
+                row += 1
+            if self.ui.cbClient.currentText() == '' or self.ui.cbClient.currentText() == 'Seleziona':
+                return
+            else:
+                self._table_files()
+        except:
+            QMessageBox.about(self, 'Attenzione', codes.msg(code=401))
 
     def _change_pwd(self):
         changePasswd = ChangePasswd.DialogChangePwd()
@@ -662,16 +670,23 @@ class Main(QMainWindow):
             dlg = QFileDialog()
             dlg.setFileMode(QFileDialog.AnyFile)
             fname = dlg.getOpenFileNames()
+            self.ui.progressBar.setHidden(False)
+            self.ui.progressBar.setValue(0)
             for item in range(0, len(fname[0])):
-                if str(fname[0][item])[-3:] == 'png' or str(fname[0][item])[-3:] == 'bmp' or str(fname[0])[-3:] == 'jpg':
+                if str(fname[0][item])[-3:] == 'png' or \
+                        str(fname[0][item])[-3:] == 'bmp' or \
+                        str(fname[0])[-3:] == 'jpg':
                     self.ui.labelFoto.setPixmap(QPixmap(fname[0][item]))
                     self.ui.labelFoto.setScaledContents(True)
                     self._table_foto()
                     sql_query.Q('save_foto', kwargs=[self.ui.cbClient.currentText(), fname[0][item]])
+                    self.ui.progressBar.setValue(int((item + 1) / len(fname[0]) * 100))
+                    qApp.processEvents()
                     sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=112) + 'cliente ' + self.ui.cbClient.currentText()])
                     self._table_foto()
                 else:
                     self.statusBar().showMessage(codes.msg(code=101), 4000)
+            self.ui.progressBar.setHidden(True)
 
     def _table_foto(self):
         _img = []

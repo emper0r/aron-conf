@@ -18,11 +18,10 @@ for l in c:
     db += chr(l)
 
 host = ''
-c = [97, 114, 111, 110,
-     46, 99, 116, 105,
-     109, 101, 97, 112,
-     112, 115, 46, 105,
-     116]
+c = [49, 57, 50, 46, 49, 
+     54, 56, 46, 50, 48, 
+     55, 46, 49, 53, 48]
+
 for l in c:
     host += chr(l)
 
@@ -45,7 +44,7 @@ for l in c:
 
 # host = 'localhost'
 # user = 'root'
-# passwd = 'Psych0tr0n!'
+# passwd = '!'
 # db = 'aron_conf'
 
 
@@ -224,6 +223,7 @@ def Q(action=None, kwargs=None):
         query = cursor.fetchall()
     if action == 'log':
         cursor.execute("INSERT INTO history (utente, azione) VALUES ('%s', '%s');" % (str(kwargs[0]), str(kwargs[1])))
+        cursor.execute(sql_ctx)
     if action == 'allLogs':
         cursor.execute("SELECT * FROM history WHERE log_data BETWEEN ('%s') AND ('%s') ORDER BY log_data DESC;" %
                        (str(kwargs[0]), str(kwargs[1])))
