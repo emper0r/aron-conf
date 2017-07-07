@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="dbSrc:///f9a88b8c/d2894189-fd2b-4848-ad61-7f2ce00dd662" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/ac.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/aron-conf.py" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/aron_conf.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/modules/sql_query.py" dialect="MySQL" />
