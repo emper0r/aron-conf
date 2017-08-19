@@ -2,6 +2,7 @@ import os
 import platform
 import base64
 import bcrypt
+import configparser
 from PIL import Image
 from resizeimage import resizeimage
 
@@ -10,50 +11,17 @@ if platform.system() == 'Linux':
 else:
     import pymysql
 
-db = ''
-c = [97, 114, 111, 110,
-     95, 99, 111, 110,
-     102]
-for l in c:
-    db += chr(l)
-
-host = ''
-c = [49, 57, 50, 46, 49, 
-     54, 56, 46, 50, 48, 
-     55, 46, 49, 53, 48]
-
-for l in c:
-    host += chr(l)
-
-user = ''
-c = [97, 99]
-for l in c:
-    user += chr(l)
-
-passwd = ''
-c = [99, 104, 112, 56,
-     112, 38, 42, 109,
-     49, 33, 57, 99,
-     42, 115, 121, 110,
-     100, 33, 94, 112,
-     45, 122, 52, 118,
-     57, 113, 100, 98,
-     42, 103, 37, 33]
-for l in c:
-    passwd += chr(l)
-
-# host = 'localhost'
-# user = 'root'
-# passwd = '!'
-# db = 'aron_conf'
-
 
 def Q(action=None, kwargs=None):
+    conf = configparser.RawConfigParser()
+    conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
     try:
         if platform.system() == 'Linux':
-            conn = MySQLdb.connect(host, user, passwd, db)
+            conn = MySQLdb.connect(conf['Settings']['hostname'], conf['Settings']['user'],
+                                   conf['Settings']['password'], conf['Settings']['database'])
         else:
-            conn = pymysql.connect(host, user, passwd, db)
+            conn = pymysql.connect(conf['Settings']['hostname'], conf['Settings']['user'],
+                                   conf['Settings']['password'], conf['Settings']['database'])
     except:
         return False
     cursor = conn.cursor()
@@ -156,15 +124,13 @@ def Q(action=None, kwargs=None):
         img = Image.open(kwargs[1])
         if int(str(os.stat(kwargs[1]).st_size).strip('L')) > 1048576:
             img = resizeimage.resize_contain(img, [1031, 591])
-        else:
-            pass
-        img.save('tmp.jpeg', img.format)
+        img.save('tmp.png')
         fd_img.close()
-        with open('tmp.jpeg', "rb") as imageFile:
+        with open('tmp.png', "rb") as imageFile:
             image = base64.b64encode(imageFile.read())
         sql_ctx = "INSERT INTO tbGallery (id_client, image) VALUES (%s, %s);"
         cursor.execute(sql_ctx, (int(idclient[0][0]), image))
-        os.remove('tmp.jpeg')
+        os.remove('tmp.png')
     if action == 'load_foto':
         cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()
@@ -235,8 +201,8 @@ def Q(action=None, kwargs=None):
     if action == 'upload':
         query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()
-        file = open(kwargs[1], "r")
-        buffer = file.read()
+        with open(kwargs[1], 'rb') as f:
+            buffer = base64.b64encode(f.read())
         sql_ctx = "INSERT INTO tbfiles (id_client, name_file, buffer) VALUES (%s, %s, %s);"
         cursor.execute(sql_ctx, (int(idclient[0][0]), str(kwargs[1]).split('/')[-1], buffer))
     if action == 'files':
@@ -255,9 +221,9 @@ def Q(action=None, kwargs=None):
     if action == 'update_text':
         query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()
-        buffer = kwargs[2]
-        sql_ctx = "UPDATE tbfiles set buffer='%s' WHERE id_client='%s' AND name_file='%s';" % (buffer, idclient[0][0], kwargs[1])
-        cursor.execute(sql_ctx)
+        buffer = base64.b64encode(str(kwargs[2]).encode('ascii'))
+        sql_ctx = "UPDATE tbfiles set buffer=%s WHERE id_client=%s AND name_file=%s;"
+        cursor.execute(sql_ctx, (buffer, idclient[0][0], kwargs[1]))
     if action == 'delete_file':
         query = cursor.execute("SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[0])
         idclient = cursor.fetchall()
@@ -269,6 +235,14 @@ def Q(action=None, kwargs=None):
         sql_ctx = "UPDATE tbData set data=NOW(), hardware='%s', item='%s', it_data='%s' WHERE id_client='%s' AND data='%s' AND hardware='%s' AND item='%s' AND it_data='%s';" % \
                   (kwargs[1], kwargs[2], kwargs[3], idclient[0][0], kwargs[4], kwargs[5], kwargs[6], kwargs[7])
         cursor.execute(sql_ctx)
+    if action == 'Total_Clients':
+        sql_ctx = "SELECT count(DISTINCT(client)) FROM tbClient;"
+        cursor.execute(sql_ctx)
+        query = cursor.fetchall()
+    if action == 'Total_Images':
+        sql_ctx = "SELECT count(DISTINCT(image)) FROM tbGallery;"
+        cursor.execute(sql_ctx)
+        query = cursor.fetchall()
     conn.commit()
     conn.close()
     return query

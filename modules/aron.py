@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# Copyright (c) 2016 by Antonio Peña Diaz <antonio@ctime.it>
+# Copyright (c) 2016 by Antonio Peña Diaz <emperor.cu@gmail.com>
 #
 # GNU General Public Licence (GPL)
 #
@@ -39,6 +39,7 @@ from modules import ChangePasswd
 from modules import codes
 from modules import Users
 from modules import Logs
+from modules import Database
 
 
 __version__ = '1.0'
@@ -61,10 +62,10 @@ class Main(QMainWindow):
         self.ui.setupUi(self)
         screen = QDesktopWidget().screenGeometry()
         size = self.geometry()
-        self.setWindowFlags(Qt.FramelessWindowHint)
         self.move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2)
         logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
         self.ui.labelLogo.setPixmap(logo)
+        #self.setWindowFlags(Qt.FramelessWindowHint)
         
         # Images
         plus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
@@ -88,10 +89,12 @@ class Main(QMainWindow):
         pdf = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'pdf.png'))
         save = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'save.png'))
         modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'modify.png'))
+        db = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'db.png'))
 
         # GUI
         self.ui.tableWidget.setColumnWidth(3, 562)
         self.ui.tableWidgetImg.clicked.connect(self.img)
+        self.ui.tableWidget_attachments.setColumnWidth(0, 367)
         self.ui.tableWidget_attachments.clicked.connect(self._readFile)
         
         self.ui.cbClient.clear()
@@ -184,6 +187,10 @@ class Main(QMainWindow):
         self.ui.btModify.setIcon(QIcon(modify))
         self.ui.btModify.setToolTip('Abilita modifica')
         self.ui.btModify.setToolTipDuration(10000)
+
+        self.ui.btDataBase.setIcon(QIcon(db))
+        self.ui.btDataBase.setToolTip('Impostazione Database')
+        self.ui.btDataBase.setToolTipDuration(10000)
         
         # Button events
         self.ui.btClientPlus.clicked.connect(self._new_client)
@@ -209,7 +216,7 @@ class Main(QMainWindow):
         
         self.ui.btUsers.clicked.connect(self.utenti)
         
-        self.ui.btLogs.clicked.connect(self.logs)
+        self.ui.btLogs.clicked.connect(self._logs)
         
         self.ui.btPDF.clicked.connect(self._pdf)
         
@@ -227,6 +234,8 @@ class Main(QMainWindow):
         
         self.ui.tableWidget.doubleClicked.connect(self._freeze_table)
         self.ui.btSaveModify.clicked.connect(self._unfreeze_table)
+
+        self.ui.btDataBase.clicked.connect(self._database)
         
         self.ui.progressBar.setHidden(True)
         
@@ -335,7 +344,7 @@ class Main(QMainWindow):
                 self.ui.cbClient.setFocus(True)
                 self.list_clients()
         except:
-            QMessageBox.about(self, 'Attenzione', codes.msg(code=401))
+            pass
 
     def list_clients(self):
         self.ui.cbClient.clear()
@@ -377,7 +386,7 @@ class Main(QMainWindow):
                 self.ui.cbHardware.itemText(0)
                 self.update_items()
         except:
-            QMessageBox.about(self, 'Attenzione', codes.msg(code=401))
+            pass
 
     def update_items(self):
         self.ui.cbItem.clear()
@@ -522,7 +531,7 @@ class Main(QMainWindow):
             else:
                 self._table_files()
         except:
-            QMessageBox.about(self, 'Attenzione', codes.msg(code=401))
+            pass
 
     def _change_pwd(self):
         changePasswd = ChangePasswd.DialogChangePwd()
@@ -574,7 +583,7 @@ class Main(QMainWindow):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
             file = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(), str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())])
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=407) + 'cliente ' + self.ui.cbClient.currentText()])
-            self.ui.plainTextEdit.setPlainText(file[0][0])
+            self.ui.plainTextEdit.setPlainText(base64.b64decode(file[0][0]).decode("utf-8"))
             self.ui.labelallowmodify.setDisabled(False)
             self.ui.btModify.setDisabled(False)
             self.ui.plainTextEdit.setDisabled(False)
@@ -614,10 +623,14 @@ class Main(QMainWindow):
         buffer = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(),
                                                        str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())])
         filename = QFileDialog.getSaveFileName(self, 'Save File', os.path.expanduser("~"))
-        f = open(filename[0] + str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text()), 'w')
-        filedata = str(buffer[0][0])
-        f.write(filedata)
-        f.close()
+        if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
+            f = open(filename[0], 'w')
+            f.write(str(base64.b64decode(buffer[0][0]), 'utf-8'))
+            f.close()
+        else:
+            with open(filename[0], 'wb') as file:
+                file.write(base64.b64decode(buffer[0][0]))
+            file.close()
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(),
                                           codes.msg(code=409) +
                                           self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text() +
@@ -675,7 +688,7 @@ class Main(QMainWindow):
             for item in range(0, len(fname[0])):
                 if str(fname[0][item])[-3:] == 'png' or \
                         str(fname[0][item])[-3:] == 'bmp' or \
-                        str(fname[0])[-3:] == 'jpg':
+                        str(fname[0][item])[-3:] == 'jpg':
                     self.ui.labelFoto.setPixmap(QPixmap(fname[0][item]))
                     self.ui.labelFoto.setScaledContents(True)
                     self._table_foto()
@@ -748,7 +761,7 @@ class Main(QMainWindow):
                     self._table_foto()
                     self.statusBar().showMessage(codes.msg(code=100), 4000)
 
-    def logs(self):
+    def _logs(self):
         dialog = Logs.DialogLogs()
         dialog.exec_()
 
@@ -844,3 +857,9 @@ class Main(QMainWindow):
                     self._data, self._hw, self._field, self._value, client])
         self._table_view()
         self.statusBar().showMessage(codes.msg(code=100), 4000)
+    
+    def _database(self):
+        database = Database.DialogDatabase()
+        database.exec_()
+        if int(database.Accepted) is 1:
+            sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=411)])

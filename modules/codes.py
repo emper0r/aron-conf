@@ -1,4 +1,4 @@
-# File di codici dei messaggi
+# File dei codice per i messaggi
 # 1xx - Info
 # 2xx - Domande
 # 3xx - Risposta
@@ -74,7 +74,7 @@ def msg(code=None):
     if code == 311:
         text = 'Questo non e\' un indirizzo IP valido'
     if code == 401:
-        text = 'Errore nella connessione con la base dato'
+        text = 'Errore nella connessione col database'
     if code == 402:
         text = 'Uscita della applicazione'
     if code == 404:
@@ -91,6 +91,8 @@ def msg(code=None):
         text = 'Scaricato file: '
     if code == 410:
         text = 'Modificato configurazione TXT: '
+    if code == 411:
+        text = 'Aggiornata/Modificata/Vista impostazion database'
     if code == 500:
         text = 'Generato file di configurazione PDF '
     return text

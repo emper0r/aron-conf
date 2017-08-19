@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-# Copyright (c) 2016 by Antonio Peña Diaz <antonio@ctime.it>
+# Copyright (c) 2016 by Antonio Peña Diaz <emperor.cu@gmail.com>
 #
 # GNU General Public Licence (GPL)
 #

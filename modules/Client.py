@@ -1,4 +1,3 @@
-#|/usr/bin/python3
 from PyQt5.Qt import *
 from modules.dialogNewClient import Ui_DialogClient
 from modules import sql_query

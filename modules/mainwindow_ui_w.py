@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'QtUI/mainwindow_w.ui'
+# Form implementation generated from reading ui file 'QtUI/mainwindow_l.ui'
 #
 # Created by: PyQt5 UI code generator 5.7
 #
@@ -11,9 +11,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
+        MainWindow.setWindowModality(QtCore.Qt.ApplicationModal)
         MainWindow.resize(1360, 670)
         MainWindow.setMinimumSize(QtCore.QSize(1360, 670))
         MainWindow.setMaximumSize(QtCore.QSize(1360, 670))
+        MainWindow.setSizeIncrement(QtCore.QSize(1360, 670))
+        MainWindow.setBaseSize(QtCore.QSize(1360, 670))
         font = QtGui.QFont()
         font.setFamily("Monospace")
         font.setPointSize(8)
@@ -506,7 +509,7 @@ class Ui_MainWindow(object):
         self.btMinus_foto.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.btMinus_foto.setObjectName("btMinus_foto")
         self.progressBar = QtWidgets.QProgressBar(self.tab_attachments)
-        self.progressBar.setGeometry(QtCore.QRect(0, 580, 250, 15))
+        self.progressBar.setGeometry(QtCore.QRect(0, 578, 250, 15))
         self.progressBar.setMaximumSize(QtCore.QSize(250, 15))
         self.progressBar.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.progressBar.setProperty("value", 0)
@@ -648,6 +651,22 @@ class Ui_MainWindow(object):
         self.labelCliente.setFont(font)
         self.labelCliente.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.labelCliente.setObjectName("labelCliente")
+        self.btDataBase = QtWidgets.QPushButton(self.centralWidget)
+        self.btDataBase.setEnabled(True)
+        self.btDataBase.setGeometry(QtCore.QRect(10, 168, 39, 25))
+        font = QtGui.QFont()
+        font.setPointSize(8)
+        self.btDataBase.setFont(font)
+        self.btDataBase.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.btDataBase.setToolTip("")
+        self.btDataBase.setStatusTip("")
+        self.btDataBase.setWhatsThis("")
+        self.btDataBase.setAccessibleName("")
+        self.btDataBase.setAccessibleDescription("")
+        self.btDataBase.setText("")
+        self.btDataBase.setFlat(False)
+        self.btDataBase.setProperty("toolTipDuration", 10)
+        self.btDataBase.setObjectName("btDataBase")
         MainWindow.setCentralWidget(self.centralWidget)
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
         palette = QtGui.QPalette()
