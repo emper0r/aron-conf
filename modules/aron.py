@@ -290,6 +290,7 @@ class Main(QMainWindow):
         self.ui.btSaveModify.setDisabled(True)
         self.no_image()
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
+        self.statistic()
 
     def _login(self):
         login = Login.DialogLogin()
@@ -343,6 +344,7 @@ class Main(QMainWindow):
                     sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=405) + self.ui.labelUserName.text()])
                 self.ui.cbClient.setFocus(True)
                 self.list_clients()
+                self.statistic()
         except:
             pass
 
@@ -353,6 +355,7 @@ class Main(QMainWindow):
         for item in range(0, len(client)):
             self.ui.cbClient.addItem(client[item][0])
         self.no_image()
+        self.statistic()
 
     def no_image(self):
         self.ui.labelFoto.setPixmap(QPixmap("QtUI/no_image.png"))
@@ -367,6 +370,7 @@ class Main(QMainWindow):
                 self.ui.cbClient.addItem(client[item][0])
         self.no_image()
         self.update_hardware()
+        self.statistic()
 
     def utenti(self):
         dialog = Users.DialogUsers()
@@ -406,6 +410,7 @@ class Main(QMainWindow):
             self.statusBar().showMessage(msg, 4000)
             self.update_client()
             self.no_image()
+            self.statistic()
 
     def _new_hardware(self):
         if self.ui.cbClient.currentIndex() == 'Seleziona':
@@ -574,6 +579,7 @@ class Main(QMainWindow):
                         self._table_files()
                         self.statusBar().showMessage(codes.msg(code=101), 4000)
                         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=406) + str(fname[0][item]) + ' per il cliente ' + self.ui.cbClient.currentText()])
+                        self.statistic()
                     else:
                         pass
             except:
@@ -616,6 +622,7 @@ class Main(QMainWindow):
                     self._table_view()
                     
                     self.statusBar().showMessage(codes.msg(code=100), 4000)
+                    self.statistic()
                 else:
                     pass
     
@@ -700,6 +707,7 @@ class Main(QMainWindow):
                 else:
                     self.statusBar().showMessage(codes.msg(code=101), 4000)
             self.ui.progressBar.setHidden(True)
+            self.statistic()
 
     def _table_foto(self):
         _img = []
@@ -760,6 +768,7 @@ class Main(QMainWindow):
                                                       codes.msg(code=113) + 'cliente ' + self.ui.cbClient.currentText()])
                     self._table_foto()
                     self.statusBar().showMessage(codes.msg(code=100), 4000)
+                    self.statistic()
 
     def _logs(self):
         dialog = Logs.DialogLogs()
@@ -863,3 +872,11 @@ class Main(QMainWindow):
         database.exec_()
         if int(database.Accepted) is 1:
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=411)])
+    
+    def statistic(self):
+        total_clients = sql_query.Q(action='Total_Clients')
+        total_images = sql_query.Q(action='Total_Images')
+        total_attachments = sql_query.Q(action='Total_Attachments')
+        self.ui.lineEditTotalClient.setText(str(total_clients[0][0]))
+        self.ui.lineEditTotalImages.setText(str(total_images[0][0])),
+        self.ui.lineEditTotalAttachments.setText(str(total_attachments[0][0]))

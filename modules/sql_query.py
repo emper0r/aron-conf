@@ -243,6 +243,10 @@ def Q(action=None, kwargs=None):
         sql_ctx = "SELECT count(DISTINCT(image)) FROM tbGallery;"
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
+    if action == 'Total_Attachments':
+        sql_ctx = "SELECT count(DISTINCT(name_file)) FROM tbfiles;"
+        cursor.execute(sql_ctx)
+        query = cursor.fetchall()
     conn.commit()
     conn.close()
     return query

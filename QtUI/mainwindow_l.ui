@@ -1254,7 +1254,7 @@
    <widget class="QPushButton" name="btLogout">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>63</y>
       <width>39</width>
       <height>25</height>
@@ -1296,7 +1296,7 @@
    <widget class="QPushButton" name="btPDF">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>142</y>
       <width>39</width>
       <height>25</height>
@@ -1338,7 +1338,7 @@
    <widget class="QPushButton" name="btPassword">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>36</y>
       <width>39</width>
       <height>25</height>
@@ -1380,7 +1380,7 @@
    <widget class="QPushButton" name="btLogs">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>116</y>
       <width>39</width>
       <height>25</height>
@@ -1422,7 +1422,7 @@
    <widget class="QPushButton" name="btLogin">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>10</y>
       <width>39</width>
       <height>25</height>
@@ -1464,7 +1464,7 @@
    <widget class="QPushButton" name="btUsers">
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>90</y>
       <width>39</width>
       <height>25</height>
@@ -1613,7 +1613,7 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>10</x>
+      <x>7</x>
       <y>168</y>
       <width>39</width>
       <height>25</height>
@@ -1650,6 +1650,131 @@
     </property>
     <property name="toolTipDuration" stdset="0">
      <number>10</number>
+    </property>
+   </widget>
+   <widget class="Line" name="line_7">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>200</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="total_clients">
+    <property name="geometry">
+     <rect>
+      <x>2</x>
+      <y>230</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Clients</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_statistics">
+    <property name="geometry">
+     <rect>
+      <x>6</x>
+      <y>218</y>
+      <width>51</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Totali</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="total_images">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>285</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Immagini</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="total_attachments">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>341</y>
+      <width>51</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="text">
+     <string>Allegati</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditTotalClient">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>250</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditTotalImages">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>305</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEditTotalAttachments">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>360</y>
+      <width>51</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
