@@ -288,6 +288,7 @@ class Main(QMainWindow):
         self.ui.btDownload.setDisabled(True)
         self.ui.btTrash.setDisabled(True)
         self.ui.btSaveModify.setDisabled(True)
+        self.ui.labelUserName.setText('')
         self.no_image()
         sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=402)])
         self.statistic()
@@ -874,9 +875,14 @@ class Main(QMainWindow):
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=411)])
     
     def statistic(self):
-        total_clients = sql_query.Q(action='Total_Clients')
-        total_images = sql_query.Q(action='Total_Images')
-        total_attachments = sql_query.Q(action='Total_Attachments')
-        self.ui.lineEditTotalClient.setText(str(total_clients[0][0]))
-        self.ui.lineEditTotalImages.setText(str(total_images[0][0])),
-        self.ui.lineEditTotalAttachments.setText(str(total_attachments[0][0]))
+        if self.ui.labelUserName.text() != '':
+            total_clients = sql_query.Q(action='Total_Clients')
+            total_images = sql_query.Q(action='Total_Images')
+            total_attachments = sql_query.Q(action='Total_Attachments')
+            self.ui.lineEditTotalClient.setText(str(total_clients[0][0]))
+            self.ui.lineEditTotalImages.setText(str(total_images[0][0])),
+            self.ui.lineEditTotalAttachments.setText(str(total_attachments[0][0]))
+        else:
+            self.ui.lineEditTotalClient.setText('')
+            self.ui.lineEditTotalImages.setText(''),
+            self.ui.lineEditTotalAttachments.setText('')
