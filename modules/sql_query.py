@@ -17,15 +17,15 @@ def Q(action=None, kwargs=None):
     conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
     try:
         if platform.system() == 'Linux':
-            conn = MySQLdb.connect(base64.b64decode(conf['Settings']['hostname']).decode('utf-8'),
-                                   base64.b64decode(conf['Settings']['user']).decode('utf-8'),
-                                   base64.b64decode(conf['Settings']['password']).decode('utf-8'),
-                                   base64.b64decode(conf['Settings']['database']).decode('utf-8'))
+            conn = MySQLdb.connect(base64.b64decode(conf['Settings']['hostname'][2:-1]).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['user'][2:-1]).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['password'][2:-1]).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['database'][2:-1]).decode('utf-8'))
         else:
-            conn = pymysql.connect(base64.b64decode(conf['Settings']['hostname']).decode('utf-8'),
-                                   base64.b64decode(conf['Settings']['user']).decode('utf-8'),
-                                   base64.b64decode(conf['Settings']['password']).decode('utf-8'),
-                                   base64.b64decode(conf['Settings']['database']).decode('utf-8'))
+            conn = pymysql.connect(base64.b64decode(conf['Settings']['hostname'][2:-1]).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['user'][2:-1]).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['password'][2:-1]).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['database'][2:-1]).decode('utf-8'))
     except:
         return False
     cursor = conn.cursor()
