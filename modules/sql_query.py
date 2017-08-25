@@ -17,11 +17,15 @@ def Q(action=None, kwargs=None):
     conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
     try:
         if platform.system() == 'Linux':
-            conn = MySQLdb.connect(conf['Settings']['hostname'], conf['Settings']['user'],
-                                   conf['Settings']['password'], conf['Settings']['database'])
+            conn = MySQLdb.connect(base64.b64decode(conf['Settings']['hostname']).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['user']).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['password']).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['database']).decode('utf-8'))
         else:
-            conn = pymysql.connect(conf['Settings']['hostname'], conf['Settings']['user'],
-                                   conf['Settings']['password'], conf['Settings']['database'])
+            conn = pymysql.connect(base64.b64decode(conf['Settings']['hostname']).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['user']).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['password']).decode('utf-8'),
+                                   base64.b64decode(conf['Settings']['database']).decode('utf-8'))
     except:
         return False
     cursor = conn.cursor()

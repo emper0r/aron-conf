@@ -1,4 +1,5 @@
 import os
+import base64
 import configparser
 from PyQt5.Qt import *
 from modules.dialogDatabase import Ui_DialogDatabase
@@ -22,10 +23,10 @@ class DialogDatabase(QDialog, Ui_DialogDatabase):
     def load_data(self):
         conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
         try:
-            self.EditDialogHostname.setText(conf['Settings']['hostname'])
-            self.EditDialogDatabase.setText(conf['Settings']['database'])
-            self.EditDialogUsername.setText(conf['Settings']['user'])
-            self.EditDialogPwd.setText(conf['Settings']['password'])
+            self.EditDialogHostname.setText(base64.b64decode(conf['Settings']['hostname'][2:-1]).decode('utf-8'))
+            self.EditDialogDatabase.setText(base64.b64decode(conf['Settings']['database'][2:-1]).decode('utf-8'))
+            self.EditDialogUsername.setText(base64.b64decode(conf['Settings']['user'][2:-1]).decode('utf-8'))
+            self.EditDialogPwd.setText(base64.b64decode(conf['Settings']['password'][2:-1]).decode('utf-8'))
         except:
             self.config(hostname='localhost', database='aron_conf', user='ac', password='!')
             self.load_data()
@@ -41,10 +42,10 @@ class DialogDatabase(QDialog, Ui_DialogDatabase):
         config_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'), 'w')
         conf.clear()
         conf.add_section('Settings')
-        conf.set('Settings', 'hostname', hostname)
-        conf.set('Settings', 'database', database)
-        conf.set('Settings', 'user', user)
-        conf.set('Settings', 'password', password)
+        conf.set('Settings', 'hostname', base64.b64encode(hostname.encode('utf-8')))
+        conf.set('Settings', 'database', base64.b64encode(database.encode('utf-8')))
+        conf.set('Settings', 'user', base64.b64encode(user.encode('utf-8')))
+        conf.set('Settings', 'password', base64.b64encode(password.encode('utf-8')))
         conf.write(config_file)
         config_file.close()
 
