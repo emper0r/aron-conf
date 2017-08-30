@@ -251,6 +251,10 @@ def Q(action=None, kwargs=None):
         sql_ctx = "SELECT count(DISTINCT(name_file)) FROM tbfiles;"
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
+    if action == 'license':
+        sql_ctx = "SELECT * FROM tbLicense;"
+        cursor.execute(sql_ctx)
+        query = cursor.fetchall()
     conn.commit()
     conn.close()
     return query

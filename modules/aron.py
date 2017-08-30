@@ -40,6 +40,7 @@ from modules import codes
 from modules import Users
 from modules import Logs
 from modules import Database
+from modules import License
 
 
 __version__ = '1.0'
@@ -90,6 +91,7 @@ class Main(QMainWindow):
         save = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'save.png'))
         modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'modify.png'))
         db = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'db.png'))
+        license = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'license.png'))
 
         # GUI
         self.ui.tableWidget.setColumnWidth(3, 562)
@@ -191,6 +193,10 @@ class Main(QMainWindow):
         self.ui.btDataBase.setIcon(QIcon(db))
         self.ui.btDataBase.setToolTip('Impostazione Database')
         self.ui.btDataBase.setToolTipDuration(10000)
+
+        self.ui.btAronLic.setIcon(QIcon(license))
+        self.ui.btAronLic.setToolTip('Licenze Aron-Proxy')
+        self.ui.btAronLic.setToolTipDuration(10000)
         
         # Button events
         self.ui.btClientPlus.clicked.connect(self._new_client)
@@ -236,6 +242,8 @@ class Main(QMainWindow):
         self.ui.btSaveModify.clicked.connect(self._unfreeze_table)
 
         self.ui.btDataBase.clicked.connect(self._database)
+
+        self.ui.btAronLic.clicked.connect(self._license)
         
         self.ui.progressBar.setHidden(True)
         
@@ -276,6 +284,7 @@ class Main(QMainWindow):
         self.ui.btLogin.setEnabled(True)
         self.ui.btUsers.setHidden(True)
         self.ui.btLogs.setHidden(True)
+        self.ui.btAronLic.setHidden(True)
         self.ui.btLogin.setFocus(True)
         self.ui.plainTextEdit.setDisabled(True)
         self.ui.plainTextEdit.setReadOnly(True)
@@ -335,11 +344,13 @@ class Main(QMainWindow):
                     self.ui.btLogs.setHidden(False)
                     self.ui.btMinus_foto.setDisabled(False)
                     self.ui.btTrash.setDisabled(False)
+                    self.ui.btAronLic.setHidden(False)
                     sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=405) + 'admin'])
                 else:
                     self.ui.btMinus_foto.setDisabled(True)
                     self.ui.btTrash.setDisabled(True)
                     self.ui.btUsers.setHidden(True)
+                    self.ui.btAronLic.setHidden(True)
                     self.ui.btPDF.setHidden(True)
                     self.ui.btLogs.setHidden(True)
                     sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=405) + self.ui.labelUserName.text()])
@@ -886,3 +897,9 @@ class Main(QMainWindow):
             self.ui.lineEditTotalClient.setText('')
             self.ui.lineEditTotalImages.setText(''),
             self.ui.lineEditTotalAttachments.setText('')
+
+    def _license(self):
+        lic = License.DialogLic()
+        lic.exec_()
+        if int(lic.Accepted) is 1:
+            sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=412)])

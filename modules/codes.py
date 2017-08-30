@@ -93,6 +93,8 @@ def msg(code=None):
         text = 'Modificato configurazione TXT: '
     if code == 411:
         text = 'Aggiornata/Modificata/Vista impostazion database'
+    if code == 412:
+        text = 'Aggiornata/Modificata/Vista impostazion aron license'
     if code == 500:
         text = 'Generato file di configurazione PDF '
     return text
