@@ -92,9 +92,11 @@ def msg(code=None):
     if code == 410:
         text = 'Modificato configurazione TXT: '
     if code == 411:
-        text = 'Aggiornata/Modificata/Vista impostazion database'
+        text = 'Aggiornata/Modificata/Vista impostazione database'
     if code == 412:
-        text = 'Aggiornata/Modificata/Vista impostazion aron license'
+        text = 'Aggiornata/Modificata/Vista impostazione aron license'
+    if code == 413:
+        text = 'I campi non possono essere vuoti e il campo email dovrebbe essere formato valido'
     if code == 500:
         text = 'Generato file di configurazione PDF '
     return text
