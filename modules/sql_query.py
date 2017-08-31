@@ -257,7 +257,7 @@ def Q(action=None, kwargs=None):
         query = cursor.fetchall()
     if action == 'insert_lic':
         sql_ctx = "INSERT INTO tbLicense (client, name, email, active_date, exp_date, req, lic, qty_dev) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);"
-        cursor.execute(sql_ctx, (kwargs[0], kwargs[1], kwargs[2], kwargs[3], kwargs[4][-4:]+'-'+kwargs[4][3:5]+'-'+kwargs[4][:2], kwargs[5][-4:]+'-'+kwargs[5][3:5]+'-'+kwargs[5][:2], kwargs[6], int(kwargs[7])))
+        cursor.execute(sql_ctx, (kwargs[0], kwargs[1], kwargs[2], kwargs[3][-4:]+'-'+kwargs[3][3:5]+'-'+kwargs[3][:2], kwargs[4][-4:]+'-'+kwargs[4][3:5]+'-'+kwargs[4][:2], kwargs[5], kwargs[6], int(kwargs[7])))
     if action == 'delete_lic':
         sql_ctx = "DELETE FROM tbLicense WHERE client=%s AND lic=%s;"
         cursor.execute(sql_ctx, (kwargs[0], kwargs[1]))
