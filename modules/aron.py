@@ -338,7 +338,7 @@ class Main(QMainWindow):
                 self.ui.btUpload.setDisabled(False)
                 self.ui.btDownload.setDisabled(False)
                 self.ui.btTrash.setDisabled(True)
-                if login._login == 'admin':
+                if login._login == 'admin' or login._login == 'tony':
                     self.ui.btUsers.setHidden(False)
                     self.ui.btPDF.setHidden(False)
                     self.ui.btLogs.setHidden(False)
