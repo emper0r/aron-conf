@@ -1,21 +1,49 @@
-Eseguire i seguenti programmi per default dentro la directory tools
--------------------------------------------------------------------
+=========================================
+Proyect: Aron-Conf
+Author: Tony Peña <emperor.cu@gmail.com>
+Year: 2016-2017
+=========================================
 
-Tony Peña: emperor.cu@gmail.com
+It's a tool to centralize configurations adapted to my work 
+( as optional use can generate licenses for Aron-Proxy software )
 
-1- python-3.5.2.exe
+This tool avoid send configs using emails to stay tuned or synced with same text file configs between my co-workers
 
-2- PyQt5-5.6-gpl-Py3.5-Qt5.6.0-x32-2.exe
+Install process is very simple,
 
-3- nella consola MS-DOS eseguire come administrator: 
+Create a simple database called aron_conf and after that import aron_conf.sql schema.
+
+> create database aron_conf;
+> grant all privileges on aron.* to 'aron'@'%' identified by 'S0meP4ssw0rd';
+> flush privileges;
+
+# mysql -u aron -h localhost -p aron_conf < aron_conf.sql
+
+After import database, just execute aron.py
+
+./aron.py
+
+If you use Aron-Proxy software must be running daemon.py otherwise can be ignore this optional function.
+
+INFO: the daemon.py is a daemon service process, 
+      using tcp/9999 port by default, and is the tool to check/validate
+      the license request from Aron-Proxy software.          
+      The license is generated using this tool Aron-Conf
+
+
+This software can be used at windows following this steps:
+
+1- install python-3.5.2.exe
+
+2- install PyQt5-5.6-gpl-Py3.5-Qt5.6.0-x32-2.exe
+
+3- as Administrator at MS-DOS console: 
 
  pip install configparser pymysql pycryptodome bcrypt python-resize-image reportlab iptools cxfreeze
 
-4- Estrarre aron-conf.rar in C:\aron-conf
+4- Download this code at C:\aron-conf
 
-5- Eseguire la applicazione aron-conf.py o creare il collegamento Aron Config.lnk sul desktop
-
-6- Creare port:
+5- Create the port:
 
 ms-dos> c:\Python35\python.exe \
         c:\Python35\Scripts\cxfreeze \
@@ -23,8 +51,7 @@ ms-dos> c:\Python35\python.exe \
         --icon=c:\aron-conf\QtUI\ctime_logo.ico \
         aron-conf.py
 
-* Copiare cartella QtUi nella cartella distribution dopo la creazione del port
+* After build the port must be copied 'QtUi' directory on the port directory, following example above will be c:\aron-port\QtUi
 
 TODO:
-- cercare
-- tabella emails
+- Add emails into users to notice when some change was made
