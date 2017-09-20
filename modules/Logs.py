@@ -14,7 +14,7 @@ class DialogLogs(QDialog, Ui_DialogLogs):
         self.tableWidget.setColumnWidth(1, 100)
         self.tableWidget.setColumnWidth(2, 360)
         self.comboBox.clear()
-        logs = QPixmap("QtUI/log.png")
+        logs = QPixmap("images/log.png")
         self.btFind.setIcon(QIcon(logs))
         self.btFind.setToolTip('Logs del sistema')
         self.btFind.setToolTipDuration(10000)

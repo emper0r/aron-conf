@@ -91,7 +91,7 @@ class Main(QMainWindow):
         save = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'save.png'))
         modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'modify.png'))
         db = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'db.png'))
-        license = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'license.png'))
+        license_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'license.png'))
 
         # GUI
         self.ui.tableWidget.setColumnWidth(3, 562)
@@ -194,7 +194,7 @@ class Main(QMainWindow):
         self.ui.btDataBase.setToolTip('Impostazione Database')
         self.ui.btDataBase.setToolTipDuration(10000)
 
-        self.ui.btAronLic.setIcon(QIcon(license))
+        self.ui.btAronLic.setIcon(QIcon(license_img))
         self.ui.btAronLic.setToolTip('Licenze Aron-Proxy')
         self.ui.btAronLic.setToolTipDuration(10000)
         
@@ -338,7 +338,7 @@ class Main(QMainWindow):
                 self.ui.btUpload.setDisabled(False)
                 self.ui.btDownload.setDisabled(False)
                 self.ui.btTrash.setDisabled(True)
-                if login._login == 'admin' or login._login == 'tony':
+                if login._login == 'admin':
                     self.ui.btUsers.setHidden(False)
                     self.ui.btPDF.setHidden(False)
                     self.ui.btLogs.setHidden(False)

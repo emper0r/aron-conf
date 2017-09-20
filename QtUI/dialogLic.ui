@@ -50,7 +50,7 @@
    <cursorShape>PointingHandCursor</cursorShape>
   </property>
   <property name="windowTitle">
-   <string>Azioni utenti</string>
+   <string>Aron Proxy License</string>
   </property>
   <widget class="QTableWidget" name="tableWidget">
    <property name="geometry">
@@ -130,7 +130,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -146,7 +146,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -162,7 +162,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -177,7 +177,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -192,7 +192,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -207,7 +207,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -222,7 +222,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -237,7 +237,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -252,7 +252,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
    <column>
@@ -267,7 +267,7 @@
      </font>
     </property>
     <property name="textAlignment">
-     <set>AlignHCenter|AlignVCenter|AlignCenter</set>
+     <set>AlignCenter</set>
     </property>
    </column>
   </widget>
