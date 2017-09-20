@@ -64,34 +64,34 @@ class Main(QMainWindow):
         screen = QDesktopWidget().screenGeometry()
         size = self.geometry()
         self.move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2)
-        logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
+        logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'ctime_logo.png'))
         self.ui.labelLogo.setPixmap(logo)
         #self.setWindowFlags(Qt.FramelessWindowHint)
         
         # Images
-        plus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
-        upload_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'upload.png'))
-        download_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'download.png'))
-        plus_hw_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
-        plus_item_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
-        plus_client_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'plus.png'))
-        plus_foto_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'add_photo.png'))
-        minus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
-        trash_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'trash.png'))
-        minus_hw_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
-        minus_item_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
-        minus_client_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'minus.png'))
-        minus_foto_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'delete_photo.png'))
-        pass_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'password.png'))
-        login_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'login.png'))
-        logout_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'logout.png'))
-        users_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', '../QtUI/users.png'))
-        logs = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'log.png'))
-        pdf = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'pdf.png'))
-        save = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'save.png'))
-        modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'modify.png'))
-        db = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'db.png'))
-        license = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'license.png'))
+        plus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'plus.png'))
+        upload_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'upload.png'))
+        download_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'download.png'))
+        plus_hw_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'plus.png'))
+        plus_item_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'plus.png'))
+        plus_client_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'plus.png'))
+        plus_foto_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'add_photo.png'))
+        minus_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'minus.png'))
+        trash_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'trash.png'))
+        minus_hw_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'minus.png'))
+        minus_item_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'minus.png'))
+        minus_client_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'minus.png'))
+        minus_foto_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'delete_photo.png'))
+        pass_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'password.png'))
+        login_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'login.png'))
+        logout_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'logout.png'))
+        users_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', '../images/users.png'))
+        logs = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'log.png'))
+        pdf = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'pdf.png'))
+        save = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'save.png'))
+        modify = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'modify.png'))
+        db = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'db.png'))
+        license = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'license.png'))
 
         # GUI
         self.ui.tableWidget.setColumnWidth(3, 562)
@@ -370,7 +370,7 @@ class Main(QMainWindow):
         self.statistic()
 
     def no_image(self):
-        self.ui.labelFoto.setPixmap(QPixmap("QtUI/no_image.png"))
+        self.ui.labelFoto.setPixmap(QPixmap("images/no_image.png"))
         self.ui.labelFoto.setScaledContents(True)
 
     def update_client(self):
@@ -793,7 +793,7 @@ class Main(QMainWindow):
 
             elements = []
 
-            logo = Image("QtUI/ctime_logo.png", inch, inch)
+            logo = Image("images/ctime_logo.png", inch, inch)
             elements.append(logo)
 
             doc = SimpleDocTemplate("ctime_" + self.ui.cbClient.currentText() + ".pdf",

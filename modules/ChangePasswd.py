@@ -13,7 +13,7 @@ class DialogChangePwd(QDialog, Ui_DialogChangePwd):
         self.setupUi(self)
         self.EditNew.hasFocus()
         self.setWindowTitle('Cambio Password')
-        logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'ctime_logo.png'))
+        logo = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'ctime_logo.png'))
         self.labelLogo.setPixmap(logo)
         self.buttonBox.clicked.connect(self.accept)
 

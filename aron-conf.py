@@ -27,7 +27,7 @@ def main():
     import time
     QApplication.setStyle(QStyleFactory.create('Cleanlooks'))
     app = QApplication(sys.argv)
-    image_splash = QPixmap('./QtUI/ctime_logo.png')
+    image_splash = QPixmap('./images/ctime_logo.png')
     splash_pix = QPixmap(image_splash)
     splash = QSplashScreen(splash_pix, Qt.WindowStaysOnTopHint)
     splash.setMask(splash_pix.mask())

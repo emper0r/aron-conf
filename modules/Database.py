@@ -12,7 +12,7 @@ class DialogDatabase(QDialog, Ui_DialogImpostazione):
         QDialog.__init__(self, parent)
         self.setupUi(self)
         self.btSave.setFocus()
-        save_hw_img = QPixmap("QtUI/save.png")
+        save_hw_img = QPixmap("images/save.png")
         self.btSave.setIcon(QIcon(save_hw_img))
         self.btSave.setToolTip('Salva impostazione')
         self.btSave.setToolTipDuration(10000)
@@ -31,9 +31,10 @@ class DialogDatabase(QDialog, Ui_DialogImpostazione):
             self.EditDialogDatabase.setText(base64.b64decode(conf['Settings']['database'][2:-1]).decode('utf-8'))
             self.EditDialogUsername.setText(base64.b64decode(conf['Settings']['user'][2:-1]).decode('utf-8'))
             self.EditDialogPwd.setText(base64.b64decode(conf['Settings']['password'][2:-1]).decode('utf-8'))
+            self.spinBoxDaemonPort.value()
         except:
             self.config(smtp_server='localhost', smtp_sender='foo@domain.com', smtp_user='foo', smtp_password='pass',
-                        hostname='localhost', database='aron_conf', user='ac', password='!')
+                        hostname='localhost', database='aron_conf', user='ac', password='!', daemon_port=9999)
             self.load_data()
 
     def _save(self):
@@ -44,10 +45,11 @@ class DialogDatabase(QDialog, Ui_DialogImpostazione):
                     hostname=self.EditDialogHostname.text(),
                     database=self.EditDialogDatabase.text(),
                     user=self.EditDialogUsername.text(),
-                    password=self.EditDialogPwd.text())
+                    password=self.EditDialogPwd.text(),
+                    daemon_port=self.spinBoxDaemonPort.value())
         self.accept()
 
-    def config(self, smtp_server=False, smtp_sender=False, smtp_user=False, smtp_password=False, hostname=False, database=False, user=False, password=False):
+    def config(self, smtp_server=False, smtp_sender=False, smtp_user=False, smtp_password=False, hostname=False, database=False, user=False, password=False, daemon_port=False):
         config_file = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'), 'w')
         conf.clear()
         conf.add_section('Settings')
@@ -60,6 +62,8 @@ class DialogDatabase(QDialog, Ui_DialogImpostazione):
         conf.set('Mail', 'sender', base64.b64encode(smtp_sender.encode('utf-8')))
         conf.set('Mail', 'user', base64.b64encode(smtp_user.encode('utf-8')))
         conf.set('Mail', 'password', base64.b64encode(smtp_password.encode('utf-8')))
+        conf.add_section('Daemon')
+        conf.set('Daemon', 'port', 9999)
         conf.write(config_file)
         config_file.close()
 

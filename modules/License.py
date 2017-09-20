@@ -3,13 +3,13 @@ import re
 import smtplib
 import base64
 import configparser
+import socket
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from PyQt5.Qt import *
 from modules.dialogLic import Ui_DialogLic
 from modules import sql_query
 from modules import codes
-from modules import key
 
 
 class DialogLic(QDialog, Ui_DialogLic):
@@ -19,9 +19,9 @@ class DialogLic(QDialog, Ui_DialogLic):
         self._want_to_close = False
         self.dateEditActive.setDate(QDate.currentDate())
         self.dateEditExpire.setDate(QDate.currentDate().addYears(1))
-        save_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'save.png'))
-        trash_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'trash.png'))
-        generate_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../QtUI', 'generate.png'))
+        save_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'save.png'))
+        trash_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'trash.png'))
+        generate_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'generate.png'))
 
         self.btSave.setIcon(QIcon(save_img))
         self.btSave.setToolTip('Salve Licenza')
@@ -47,12 +47,12 @@ class DialogLic(QDialog, Ui_DialogLic):
             self.tableWidget.insertRow(self.tableWidget.rowCount())
             for column in range(0, 10):
                 if column == 9 and db_table[row][9] == 1:
-                    pix = QPixmap("QtUI/enable.png")
+                    pix = QPixmap("images/enable.png")
                     img = QLabel(self)
                     img.setPixmap(QPixmap(pix).scaled(16, 16))
                     self.tableWidget.setCellWidget(row, 9, img)
                 elif column == 9 and db_table[row][9] is None:
-                    pix = QPixmap("QtUI/disable.png")
+                    pix = QPixmap("images/disable.png")
                     img = QLabel(self)
                     img.setPixmap(QPixmap(pix).scaled(16, 16))
                     self.tableWidget.setCellWidget(row, 9, img)
@@ -124,7 +124,12 @@ class DialogLic(QDialog, Ui_DialogLic):
         self._loadtable()
     
     def _generate(self):
-        pk, sk = key.generate_keypair()
-        self.lineEditReq.setText(key.key_to_string(pk))
-        self.lineEditLic.setText(key.secret_to_string(sk))
-
+        conf = configparser.RawConfigParser()
+        conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+            sock.connect((base64.b64decode(conf['Settings']['hostname'][2:-1]).decode('utf-8'),
+                          int(conf['Daemon']['port'])))
+            sock.sendall(bytes('genlic' + "\n", "utf-8"))
+            received = str(sock.recv(1024), "utf-8")
+            self.lineEditReq.setText(received[:48])
+            self.lineEditLic.setText(received[49:])
