@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="MySQL - aron_conf">
-  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
     <root id="1"/>
     <schema id="2" parent="1" name="aron_conf">
       <Current>1</Current>
@@ -123,8 +123,6 @@
       <RefSchemaName>aron_conf</RefSchemaName>
       <RefTableName>tbClient</RefTableName>
       <RefColNames>id_client</RefColNames>
-      <OnUpdate>no-action</OnUpdate>
-      <OnDelete>no-action</OnDelete>
     </foreign-key>
     <column id="40" parent="11" name="hw">
       <Position>1</Position>
