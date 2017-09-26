@@ -115,22 +115,16 @@
     <bool>true</bool>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>69</number>
+    <number>159</number>
    </attribute>
    <attribute name="horizontalHeaderMinimumSectionSize">
-    <number>240</number>
+    <number>318</number>
    </attribute>
    <attribute name="horizontalHeaderStretchLastSection">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="verticalHeaderDefaultSectionSize">
-    <number>25</number>
-   </attribute>
-   <attribute name="verticalHeaderMinimumSectionSize">
-    <number>25</number>
+    <bool>true</bool>
    </attribute>
    <attribute name="verticalHeaderStretchLastSection">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
    <column>
     <property name="text">
