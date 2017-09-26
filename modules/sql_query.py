@@ -252,7 +252,7 @@ def Q(action=None, kwargs=None):
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
     if action == 'license':
-        sql_ctx = "SELECT client, name, email, qty_dev, active_date, exp_date, req, lic, server_id, active_lic FROM tbLicense;"
+        sql_ctx = "SELECT client, name, email, qty_dev, active_date, exp_date, req, lic, server_id, active_lic, pwd_client FROM tbLicense;"
         cursor.execute(sql_ctx)
         query = cursor.fetchall()
     if action == 'insert_lic':

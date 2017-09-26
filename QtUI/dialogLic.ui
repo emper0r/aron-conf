@@ -94,9 +94,12 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
    <property name="editTriggers">
-    <set>QAbstractItemView::NoEditTriggers</set>
+    <set>QAbstractItemView::DoubleClicked</set>
    </property>
    <property name="dragDropOverwriteMode">
+    <bool>false</bool>
+   </property>
+   <property name="alternatingRowColors">
     <bool>false</bool>
    </property>
    <property name="selectionMode">
@@ -116,6 +119,12 @@
    </attribute>
    <attribute name="horizontalHeaderMinimumSectionSize">
     <number>318</number>
+   </attribute>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
+   <attribute name="verticalHeaderStretchLastSection">
+    <bool>true</bool>
    </attribute>
    <column>
     <property name="text">
@@ -261,6 +270,22 @@
     </property>
     <property name="font">
      <font>
+      <pointsize>8</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="textAlignment">
+     <set>AlignCenter</set>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Password</string>
+    </property>
+    <property name="font">
+     <font>
+      <family>Monospace</family>
       <pointsize>8</pointsize>
       <weight>75</weight>
       <bold>true</bold>

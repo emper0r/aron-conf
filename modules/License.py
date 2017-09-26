@@ -45,7 +45,7 @@ class DialogLic(QDialog, Ui_DialogLic):
         db_table = sql_query.Q(action='license')
         for row in range(0, len(db_table)):
             self.tableWidget.insertRow(self.tableWidget.rowCount())
-            for column in range(0, 10):
+            for column in range(0, 11):
                 if column == 9 and db_table[row][9] == 1:
                     pix = QPixmap("images/enable.png")
                     img = QLabel(self)
@@ -57,7 +57,10 @@ class DialogLic(QDialog, Ui_DialogLic):
                     img.setPixmap(QPixmap(pix).scaled(16, 16))
                     self.tableWidget.setCellWidget(row, 9, img)
                 else:
-                    value = QTableWidgetItem(str(db_table[row][column]), 0)
+                    if column == 3 and db_table[row][3] is 0:
+                        value = QTableWidgetItem(str('Ilimitati'), 0)
+                    else:
+                        value = QTableWidgetItem(str(db_table[row][column]), 0)
                     value.setTextAlignment(Qt.AlignHCenter)
                     value.setTextAlignment(Qt.AlignVCenter)
                     self.tableWidget.setItem(row, column, value)
