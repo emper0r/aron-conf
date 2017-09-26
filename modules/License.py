@@ -23,8 +23,19 @@ class DialogLic(QDialog, Ui_DialogLic):
         trash_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'trash.png'))
         generate_img = QPixmap(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../images', 'generate.png'))
 
+        self.tableWidget.setColumnWidth(0, 90)
+        self.tableWidget.setColumnWidth(1, 90)
+        self.tableWidget.setColumnWidth(2, 120)
+        self.tableWidget.setColumnWidth(3, 70)
+        self.tableWidget.setColumnWidth(4, 80)
+        self.tableWidget.setColumnWidth(5, 80)
+        self.tableWidget.setColumnWidth(6, 330)
+        self.tableWidget.setColumnWidth(7, 330)
+        self.tableWidget.setColumnWidth(8, 220)
+        self.tableWidget.setColumnWidth(9, 60)
+        self.tableWidget.setColumnWidth(10, 220)
         self.btSave.setIcon(QIcon(save_img))
-        self.btSave.setToolTip('Salve Licenza')
+        self.btSave.setToolTip('Salva Licenza')
         self.btSave.setToolTipDuration(10000)
         self.btGenerate.setIcon(QIcon(generate_img))
         self.btGenerate.setToolTip('Genera Licenza')
@@ -36,9 +47,9 @@ class DialogLic(QDialog, Ui_DialogLic):
         self.btSave.clicked.connect(self._save)
         self.btGenerate.clicked.connect(self._generate)
         self.btDelete.clicked.connect(self._delete)
-        
+
         self._loadtable()
-        
+
     def _loadtable(self):
         for i in reversed(range(self.tableWidget.rowCount())):
             self.tableWidget.removeRow(i)
@@ -78,12 +89,17 @@ class DialogLic(QDialog, Ui_DialogLic):
             self.accept()
         if event.key() == Qt.Key_Escape:
             self.hide()
-    
+
     def _save(self):
         conf = configparser.RawConfigParser()
         conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
         email_regex = re.compile(r"[^@]+@[^@]+\.[^@]+")
-        if self.lineEditClient.text() == '' or self.lineEditName.text() == '' or self.lineEditEmail.text() == '' or self.lineEditReq.text() == '' or self.lineEditLic.text() == '' or not email_regex.match(self.lineEditEmail.text()):
+        if self.lineEditClient.text() == '' or \
+                        self.lineEditName.text() == '' or \
+                        self.lineEditEmail.text() == '' or \
+                        self.lineEditReq.text() == '' or \
+                        self.lineEditLic.text() == '' or \
+                not email_regex.match(self.lineEditEmail.text()):
             QMessageBox.about(self, 'Attenzione', codes.msg(code=413))
         else:
             sql_query.Q(action='insert_lic', kwargs=[self.lineEditClient.text(), self.lineEditName.text(),
@@ -95,16 +111,17 @@ class DialogLic(QDialog, Ui_DialogLic):
                 qty = 'Ilimitati'
             else:
                 qty = str(self.spinBoxQty.value())
-            
+
             sender = base64.b64decode(conf['Mail']['sender'][2:-1]).decode('utf-8')
             recipient = self.lineEditEmail.text()
-            
+
             ctx = 'Gentile Cliente,<br><br>Grazie per aver scelto il nostro prodotto Aron Proxy,<br>'
             ctx += 'nel seguito inviamo i dati per l\'attivazione della licenza.<br><br>'
             ctx += 'Cliente: %s<br>Nome: %s<br>Codice: %s<br>Licenza: %s<br>Quantita\' devices: %s<br><br>' \
                    'Cordiali Saluti,<br><br>' \
                    'Computer Time s.r.l' % \
-                   (self.lineEditClient.text(), self.lineEditName.text(), self.lineEditReq.text(), self.lineEditLic.text(), qty)
+                   (self.lineEditClient.text(), self.lineEditName.text(),
+                    self.lineEditReq.text(), self.lineEditLic.text(), qty)
 
             msg = MIMEMultipart('alternative')
             msg['Subject'] = u'Computer Time :: Licenza per Aron Proxy'
@@ -119,13 +136,13 @@ class DialogLic(QDialog, Ui_DialogLic):
             s.quit()
 
             self._loadtable()
-    
+
     def _delete(self):
         client = self.tableWidget.item(self.tableWidget.currentRow(), 0).text()
         lic = self.tableWidget.item(self.tableWidget.currentRow(), 7).text()
         sql_query.Q(action='delete_lic', kwargs=[client, lic])
         self._loadtable()
-    
+
     def _generate(self):
         conf = configparser.RawConfigParser()
         conf.read(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../db.conf'))
