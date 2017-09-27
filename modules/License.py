@@ -74,6 +74,12 @@ class DialogLic(QDialog, Ui_DialogLic):
                     value.setTextAlignment(Qt.AlignHCenter)
                     value.setTextAlignment(Qt.AlignVCenter)
                     self.tableWidget.setItem(row, column, value)
+                elif column == 5 and db_table[row][5] >= datetime.date.today():
+                    value = QTableWidgetItem(str(db_table[row][column]), 0)
+                    value.setForeground(QColor(Qt.green))
+                    value.setTextAlignment(Qt.AlignHCenter)
+                    value.setTextAlignment(Qt.AlignVCenter)
+                    self.tableWidget.setItem(row, column, value)
                 else:
                     if column == 3 and db_table[row][3] is 0:
                         value = QTableWidgetItem(str('Ilimitati'), 0)
