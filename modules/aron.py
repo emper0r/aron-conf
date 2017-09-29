@@ -535,11 +535,10 @@ class Main(QMainWindow):
             self.ui.tableWidget.removeRow(i)
         try:
             tmp_values = sql_query.Q(action='tableView', kwargs=[self.ui.cbClient.currentText()])
-            db_table = sorted(tmp_values)
-            for row in range(0, len(db_table)):
+            for row in range(0, len(tmp_values)):
                 self.ui.tableWidget.insertRow(self.ui.tableWidget.rowCount())
                 for colum in range(0, 4):
-                    value = QTableWidgetItem(str(db_table[row][colum]), 0)
+                    value = QTableWidgetItem(str(tmp_values[row][colum]), 0)
                     self.ui.tableWidget.setItem(row, colum, value)
                     colum += 1
                 row += 1

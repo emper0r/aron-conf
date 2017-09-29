@@ -70,7 +70,7 @@ def Q(action=None, kwargs=None):
         sql_ctx = "SELECT id_client FROM tbClient WHERE client='%s';" % kwargs[3]
         cursor.execute(sql_ctx)
         idclient = cursor.fetchall()
-        sql_ctx = "INSERT INTO tbData (hardware, item, it_data, id_client) VALUES ('%s', '%s', '%s', '%s');" % \
+        sql_ctx = "INSERT INTO tbData (hardware, item, it_data, id_client, tbData.data) VALUES ('%s', '%s', '%s', '%s', now());" % \
                   (kwargs[0], kwargs[1], kwargs[2], idclient[0][0])
         cursor.execute(sql_ctx)
     if action == 'new_hw':

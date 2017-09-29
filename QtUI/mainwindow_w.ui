@@ -187,6 +187,9 @@
       <property name="selectionBehavior">
        <enum>QAbstractItemView::SelectRows</enum>
       </property>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
       <attribute name="horizontalHeaderDefaultSectionSize">
        <number>100</number>
       </attribute>
@@ -499,7 +502,7 @@
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
-      <property name="currentText" stdset="0">
+      <property name="currentText">
        <string>Seleziona</string>
       </property>
       <property name="insertPolicy">
@@ -859,6 +862,9 @@
       <property name="toolTip">
        <string extracomment="Cambio Password"/>
       </property>
+      <property name="toolTipDuration">
+       <number>10</number>
+      </property>
       <property name="statusTip">
        <string extracomment="Cambio Password"/>
       </property>
@@ -876,9 +882,6 @@
       </property>
       <property name="flat">
        <bool>false</bool>
-      </property>
-      <property name="toolTipDuration" stdset="0">
-       <number>10</number>
       </property>
      </widget>
      <widget class="QLabel" name="labelupdate">
@@ -922,6 +925,9 @@
       <property name="toolTip">
        <string extracomment="Cambio Password"/>
       </property>
+      <property name="toolTipDuration">
+       <number>10</number>
+      </property>
       <property name="statusTip">
        <string extracomment="Cambio Password"/>
       </property>
@@ -939,9 +945,6 @@
       </property>
       <property name="flat">
        <bool>false</bool>
-      </property>
-      <property name="toolTipDuration" stdset="0">
-       <number>10</number>
       </property>
      </widget>
      <widget class="QLabel" name="labelallowmodify">
@@ -1271,6 +1274,9 @@
     <property name="toolTip">
      <string extracomment="Logout"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="Logout"/>
     </property>
@@ -1288,9 +1294,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="btPDF">
@@ -1313,6 +1316,9 @@
     <property name="toolTip">
      <string extracomment="PDF"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="PDF"/>
     </property>
@@ -1330,9 +1336,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="btPassword">
@@ -1355,6 +1358,9 @@
     <property name="toolTip">
      <string extracomment="Cambio Password"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="Cambio Password"/>
     </property>
@@ -1372,9 +1378,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="btLogs">
@@ -1397,6 +1400,9 @@
     <property name="toolTip">
      <string extracomment="Logs"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="Logs"/>
     </property>
@@ -1414,9 +1420,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="btLogin">
@@ -1439,6 +1442,9 @@
     <property name="toolTip">
      <string extracomment="Login"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="Login"/>
     </property>
@@ -1456,9 +1462,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QPushButton" name="btUsers">
@@ -1481,6 +1484,9 @@
     <property name="toolTip">
      <string extracomment="Users"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="Users"/>
     </property>
@@ -1498,9 +1504,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="QComboBox" name="cbClient">
@@ -1630,6 +1633,9 @@
     <property name="toolTip">
      <string extracomment="DataBase"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="DataBase"/>
     </property>
@@ -1647,9 +1653,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
    <widget class="Line" name="line_7">
@@ -1797,6 +1800,9 @@
     <property name="toolTip">
      <string extracomment="Logout"/>
     </property>
+    <property name="toolTipDuration">
+     <number>10</number>
+    </property>
     <property name="statusTip">
      <string extracomment="Logout"/>
     </property>
@@ -1814,9 +1820,6 @@
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-    <property name="toolTipDuration" stdset="0">
-     <number>10</number>
     </property>
    </widget>
   </widget>
