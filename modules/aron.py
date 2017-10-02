@@ -600,7 +600,7 @@ class Main(QMainWindow):
         if str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())[-3:] == 'txt':
             file = sql_query.Q(action='load_file', kwargs=[self.ui.cbClient.currentText(), str(self.ui.tableWidget_attachments.item(self.ui.tableWidget_attachments.currentRow(), self.ui.tableWidget_attachments.currentColumn()).text())])
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=407) + 'cliente ' + self.ui.cbClient.currentText()])
-            self.ui.plainTextEdit.setPlainText(base64.b64decode(file[0][0]).decode("utf-8"))
+            self.ui.plainTextEdit.setPlainText(base64.b64decode(file[0][0]).decode("utf-8", errors='ignore'))
             self.ui.labelallowmodify.setDisabled(False)
             self.ui.btModify.setDisabled(False)
             self.ui.plainTextEdit.setDisabled(False)
