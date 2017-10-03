@@ -246,6 +246,8 @@ class Main(QMainWindow):
         self.ui.btAronLic.clicked.connect(self._license)
         
         self.ui.progressBar.setHidden(True)
+
+        self.ui.tabWidget.currentChanged.connect(self._danger_buttons)
         
         self._want_to_close = False
         
@@ -902,3 +904,11 @@ class Main(QMainWindow):
         lic.exec_()
         if int(lic.Accepted) is 1:
             sql_query.Q(action='log', kwargs=[self.ui.labelUserName.text(), codes.msg(code=412)])
+
+    def _danger_buttons(self):
+        if self.ui.tabWidget.currentIndex() is 0:
+            self.ui.btClientPlus.setHidden(False)
+            self.ui.btClientMinus.setHidden(False)
+        else:
+            self.ui.btClientPlus.setHidden(True)
+            self.ui.btClientMinus.setHidden(True)
