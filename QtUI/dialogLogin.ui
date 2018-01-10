@@ -33,7 +33,7 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
+     <family>Helvetica</family>
      <pointsize>9</pointsize>
     </font>
    </property>
@@ -58,8 +58,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
   </widget>
@@ -74,7 +74,7 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
+     <family>Helvetica</family>
      <pointsize>9</pointsize>
     </font>
    </property>
@@ -96,8 +96,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="echoMode">
@@ -115,7 +115,7 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
+     <family>Helvetica</family>
      <pointsize>9</pointsize>
     </font>
    </property>
@@ -134,6 +134,11 @@
      <width>121</width>
      <height>71</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Helvetica</family>
+    </font>
    </property>
    <property name="text">
     <string/>

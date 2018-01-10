@@ -87,7 +87,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor" stdset="0">
@@ -141,8 +142,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Monospace</family>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -157,8 +158,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Monospace</family>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -173,8 +174,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Monospace</family>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -189,7 +190,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -204,7 +206,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -219,7 +222,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -234,7 +238,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -249,7 +254,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -264,7 +270,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -279,7 +286,8 @@
     </property>
     <property name="font">
      <font>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -294,8 +302,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Monospace</family>
-      <pointsize>8</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -308,7 +316,7 @@
   <widget class="QLabel" name="labelClient">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>23</x>
      <y>10</y>
      <width>60</width>
      <height>20</height>
@@ -328,8 +336,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -352,7 +360,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -362,7 +371,7 @@
   <widget class="QLabel" name="labelName">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>23</x>
      <y>37</y>
      <width>60</width>
      <height>20</height>
@@ -382,8 +391,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -406,7 +415,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -436,8 +446,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -460,7 +470,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -490,8 +501,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -514,7 +525,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -550,8 +562,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -586,8 +598,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -610,7 +622,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -634,7 +647,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -655,7 +669,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -676,7 +691,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -689,7 +705,7 @@
   <widget class="QLabel" name="labelReq">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>386</x>
      <y>10</y>
      <width>30</width>
      <height>20</height>
@@ -709,8 +725,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -733,7 +749,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -746,7 +763,7 @@
   <widget class="QLabel" name="labelLic">
    <property name="geometry">
     <rect>
-     <x>390</x>
+     <x>391</x>
      <y>37</y>
      <width>30</width>
      <height>20</height>
@@ -766,8 +783,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -790,7 +807,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -823,8 +841,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -859,8 +877,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -895,8 +913,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -919,7 +937,8 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
     </font>
    </property>
    <property name="maximum">
@@ -949,8 +968,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>8</pointsize>
+     <family>Helvetica</family>
+     <pointsize>13</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>

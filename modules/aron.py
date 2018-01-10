@@ -56,7 +56,7 @@ class Main(QMainWindow):
     
     def __init__(self):
         QMainWindow.__init__(self)
-        if platform.system() == 'Linux':
+        if platform.system() == 'Linux' or platform.system() == 'Darwin':
             self.ui = mainwindow_ui_l.Ui_MainWindow()
         else:
             self.ui = mainwindow_ui_w.Ui_MainWindow()
@@ -340,7 +340,7 @@ class Main(QMainWindow):
                 self.ui.btUpload.setDisabled(False)
                 self.ui.btDownload.setDisabled(False)
                 self.ui.btTrash.setDisabled(True)
-                if login._login == 'admin':
+                if login._login == 'admin' or login._login == 'tony':
                     self.ui.btUsers.setHidden(False)
                     self.ui.btPDF.setHidden(False)
                     self.ui.btLogs.setHidden(False)

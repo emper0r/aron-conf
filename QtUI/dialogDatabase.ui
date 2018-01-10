@@ -72,8 +72,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -106,8 +106,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -130,8 +130,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -170,8 +170,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -213,8 +213,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -252,8 +252,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -286,8 +286,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -325,8 +325,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -359,8 +359,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -395,8 +395,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -434,8 +434,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -448,7 +448,7 @@
   <widget class="QLabel" name="labelSmtpServer">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>16</x>
      <y>37</y>
      <width>80</width>
      <height>20</height>
@@ -468,8 +468,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -507,8 +507,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -544,8 +544,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -583,8 +583,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -602,6 +602,12 @@
      <width>311</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
@@ -621,6 +627,8 @@
    </property>
    <property name="font">
     <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -643,6 +651,8 @@
    </property>
    <property name="font">
     <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -665,6 +675,8 @@
    </property>
    <property name="font">
     <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -679,7 +691,7 @@
   <widget class="QLabel" name="labelSmtpSender">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>11</x>
      <y>66</y>
      <width>80</width>
      <height>20</height>
@@ -699,8 +711,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -738,8 +750,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -760,6 +772,8 @@
    </property>
    <property name="font">
     <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -779,6 +793,12 @@
      <width>311</width>
      <height>16</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>
@@ -810,8 +830,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>50</weight>
      <bold>false</bold>
     </font>
@@ -843,6 +863,12 @@
      <width>70</width>
      <height>25</height>
     </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
+    </font>
    </property>
    <property name="cursor">
     <cursorShape>PointingHandCursor</cursorShape>

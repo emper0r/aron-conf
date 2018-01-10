@@ -69,8 +69,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="readOnly">
@@ -100,8 +100,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -146,6 +146,12 @@
      <height>210</height>
     </size>
    </property>
+   <property name="font">
+    <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
    <property name="cursor" stdset="0">
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
@@ -176,8 +182,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Monospace</family>
-      <pointsize>9</pointsize>
+      <family>Helvetica</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -189,8 +195,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Monospace</family>
-      <pointsize>9</pointsize>
+      <family>Heiti SC</family>
+      <pointsize>12</pointsize>
       <weight>75</weight>
       <bold>true</bold>
      </font>
@@ -208,8 +214,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -233,8 +239,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -258,8 +264,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="cursor">
@@ -283,6 +289,8 @@
    </property>
    <property name="font">
     <font>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -320,8 +328,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="echoMode">
@@ -360,8 +368,8 @@
    </property>
    <property name="font">
     <font>
-     <family>Monospace</family>
-     <pointsize>9</pointsize>
+     <family>Helvetica</family>
+     <pointsize>12</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
